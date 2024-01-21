@@ -8,11 +8,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/calcularRiscoRetorno', methods=['GET','POST'])
-def calcularRiscoRetorno():
-    df_final = da.calcularRiscoRetJanelasTemp()
+@app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
+def calcularRiscoRetorno(opcao):
+    df_final = da.readRiscoRetornoFile(opcao)
     fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
-                                    
                               y=df_final['PercRetorno'],
                               mode='markers',
                               text=df_final.index))

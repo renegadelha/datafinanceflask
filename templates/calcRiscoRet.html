@@ -8,8 +8,17 @@
 </head>
 <body>
     <H1>Risco Retorno das ações</H1>
-    <h2>Utilizando janelas temporais, é calculado o retorno total médio (valorização + proventos) e
-        o risco de ter prejuízo em valores percentuais para cada ação </h2>
+    <h2>Para cada janela temporal, é calculado o retorno total (valorização + proventos) e percentual de
+        risco de ter prejuízo.
+        O gráfico abaixo traz a relação do retorno total médio (eixo y)
+        x o percentual de risco (eixo x) em todas as janelas.
+
+    </h2>
+    <form action="/calcularRiscoRetorno/minhas">
+        <input type="submit" value="Avaliar minhas ações" />
+    </form>
+
+    </form>
     {{ plot|safe }}
 
 </body>

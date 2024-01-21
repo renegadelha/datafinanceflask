@@ -4,7 +4,5 @@ import pandas as pd
 import time
 import yfinance as yf
 
-s = time.time()
-dados = da.calcularRiscoRetJanelasTemp()
-print(time.time() - s)
-print(dados)
+dados = da.calcularRiscoRetJanelasTemp('minhas')
+dados.to_pickle('data/riscoRetornoMinhas.pkl')
