@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcular Risco Retorno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    <H1>Risco Retorno das ações</H1>
+    <h2>Utilizando janelas temporais, é calculado o retorno total médio (valorização + proventos) e
+        o risco de ter prejuízo em valores percentuais para cada ação </h2>
+    {{ plot|safe }}
+
+</body>
+</html>
