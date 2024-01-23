@@ -1,6 +1,35 @@
 import pandas as pd
 import yfinance as yf
-import json
+
+
+def gerarcorrelacaoindividual(ticker, indicador):
+    if indicador == 'selic':
+        ind_df = consulta_bc(432)
+    else:
+        ind_df = consulta_bc(433)
+    data_inicio = '2014-01-01'
+
+    cotaMensal = yf.Ticker(ticker + ".SA").history(start=data_inicio).resample('ME')['Close'].mean().to_frame()
+
+    ind_df = ind_df[ind_df.index >= data_inicio]
+    ind_df = ind_df.resample('ME').mean()
+
+    cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
+    cotaMensal.index = cotaMensal.index.date
+    ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
+
+    return round(float(ind_stock.corr().iloc(0)[1][0]), 3)
+
+
+#https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
+def consulta_bc(codigo_bcb):
+    url = 'http://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json'.format(codigo_bcb)
+    df = pd.read_json(url)
+    df['data'] = pd.to_datetime(df['data'], dayfirst=True)
+    df.set_index('data', inplace=True)
+    return df
+
+
 
 def readRiscoRetornoFile(opcao):
     if opcao == 'all':
