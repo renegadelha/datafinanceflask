@@ -17,7 +17,20 @@ def calcularRiscoRetorno(opcao):
                               text=df_final.index))
     return render_template('calcRiscoRet.html', plot=fig.to_html())
 
+@app.route('/correlacaoindividual', methods=['POST','GET'])
+def correlacaotickerindicador():
+    if request.method == 'POST':
+        indicador = request.form.get('indicador_radio')
+        ticker = str(request.form.get('ticker'))
 
+        correlacao = da.gerarcorrelacaoindividual(ticker, indicador)
+
+        return render_template('correlationindicador.html', correlac=correlacao)
+
+    else:
+        return render_template('correlationindicador.html')
+
+    return 'ok123'
 
 if __name__ == "__main__":
     app.run(debug=True)

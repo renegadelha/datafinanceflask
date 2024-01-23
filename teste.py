@@ -4,5 +4,7 @@ import pandas as pd
 import time
 import yfinance as yf
 
-dados = da.calcularRiscoRetJanelasTemp('minhas')
-dados.to_pickle('data/riscoRetornoMinhas.pkl')
+#dados = da.calcularRiscoRetJanelasTemp('minhas')
+#dados.to_pickle('data/riscoRetornoMinhas.pkl')
+
+da.gerarcorrelacaoindividual('bbas3')
