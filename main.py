@@ -4,6 +4,10 @@ import plotly.graph_objects as go
 
 app = Flask(__name__)
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -30,7 +34,7 @@ def correlacaotickerindicador():
     else:
         return render_template('correlationindicador.html')
 
-    return 'ok123'
+
 
 if __name__ == "__main__":
     app.run(debug=True)
