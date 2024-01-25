@@ -2,6 +2,7 @@ import pandas as pd
 import yfinance as yf
 
 
+
 def gerarcorrelacaoindividual(ticker, indicador):
     if indicador == 'selic':
         ind_df = consulta_bc(432)
@@ -9,16 +10,21 @@ def gerarcorrelacaoindividual(ticker, indicador):
         ind_df = consulta_bc(433)
     data_inicio = '2014-01-01'
 
-    cotaMensal = yf.Ticker(ticker + ".SA").history(start=data_inicio).resample('ME')['Close'].mean().to_frame()
+    cotaMensal = yf.Ticker(ticker + ".SA").history(start=data_inicio).resample('M')['Close'].mean().to_frame()
 
     ind_df = ind_df[ind_df.index >= data_inicio]
-    ind_df = ind_df.resample('ME').mean()
+    ind_df = ind_df.resample('M').mean()
 
-    cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
-    cotaMensal.index = cotaMensal.index.date
+    if cotaMensal.size - ind_df.size > 0:
+        cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
+
+    cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
+
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
+    df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
+    df_norm.columns = ['indicador', 'stock']
 
-    return round(float(ind_stock.corr().iloc(0)[1][0]), 3)
+    return round(float(ind_stock.corr().iloc(0)[1][0]), 3), df_norm
 
 
 #https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
