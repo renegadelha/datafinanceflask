@@ -24,7 +24,7 @@ def gerarcorrelacaoindividual(ticker, indicador):
     df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
     df_norm.columns = ['indicador', 'stock']
 
-    return round(float(ind_stock.corr().iloc(0)[1][0]), 3), df_norm
+    return round(float(df_norm.corr().iloc(0)[1][0]), 3), df_norm
 
 
 #https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
@@ -42,6 +42,32 @@ def readRiscoRetornoFile(opcao):
         return pd.read_pickle('data/riscoRetornoAll.pkl')
     else:
         return pd.read_pickle('data/riscoRetornoMinhas.pkl')
+
+def readCorrelacoesIndicFile(opcao):
+    if opcao == 'all':
+        return pd.read_pickle('data/correlacoesIndAll.pkl')
+    else:
+        return pd.read_pickle('data/correlacoesIndMinhas.pkl')
+
+
+
+def gerarCorrelaAll(opcao):
+
+    if opcao == 'all':
+        tickers = getEmpresasListadasAntigas()
+    else:
+        tickers = getMinhasEmpresasListadas()
+
+    lista = []
+    for ticker in tickers:
+        ipca = gerarcorrelacaoindividual(ticker ,'ipca')
+        selic = gerarcorrelacaoindividual(ticker , 'selic')
+
+        lista.append([ipca[0], selic[0]])
+
+    data = pd.DataFrame(lista, index=tickers,columns=['ipca','selic'])
+    return data
+
 
 
 def calcularRiscoRetJanelasTemp(opcao):

@@ -7,4 +7,11 @@ import yfinance as yf
 #dados = da.calcularRiscoRetJanelasTemp('minhas')
 #dados.to_pickle('data/riscoRetornoMinhas.pkl')
 
-da.gerarcorrelacaoindividual('bbas3')
+#dados = da.gerarcorrelacaoindividual('bbas3', 'selic')
+#print(dados[0])
+
+da.gerarCorrelaAll('all').to_pickle('data/correlacoesIndAll.pkl')
+
+dados = da.readCorrelacoesIndicFile('all')
+
+print(dados)

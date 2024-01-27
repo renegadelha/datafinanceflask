@@ -7,6 +7,21 @@ def gerarGrafRiscRet(df_final):
                               text=df_final.index))
     return fig.to_html()
 
+def gerarGrafCorrIndicAll(df_final):
+    fig = go.Figure(data=go.Scatter(x=df_final.iloc[:, 0],
+                              y=df_final.iloc[:, 1],
+                              mode='markers',
+                              text=df_final.index))
+
+    fig.update_layout(autosize=True,width=900,height=500 )
+    fig.update_layout(
+        xaxis_title= df_final.columns[0],
+        yaxis_title= df_final.columns[1]
+
+    )
+    return fig.to_html()
+
+
 def gerarGrafCorrInd(graficodados, indicador):
     fig = go.Figure()
     fig.add_trace(go.Scatter(
