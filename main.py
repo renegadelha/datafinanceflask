@@ -32,10 +32,10 @@ def correlacaotickerindicador():
 
 @app.route('/correlacaoindicadores', methods=['POST','GET'])
 def correlacaoallindicadores():
-    dataCorr = da.readCorrelacoesIndicFile('all')
-    print(dataCorr)
+    dataCorr = da.readCorrelacoesIndicFile('minhas')
+
     return render_template('correlationindicadores.html',
-                           plot=gr.gerarGrafCorrIndicAll(dataCorr))
+                           plot=gr.gerarGrafCorrIndicAll3D(dataCorr))
 
 
 if __name__ == "__main__":

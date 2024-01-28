@@ -10,8 +10,5 @@ import yfinance as yf
 #dados = da.gerarcorrelacaoindividual('bbas3', 'selic')
 #print(dados[0])
 
-da.gerarCorrelaAll('all').to_pickle('data/correlacoesIndAll.pkl')
+da.gerarCorrelaAll('all').to_pickle('data/correlacoesIndAll3D.pkl')
 
-dados = da.readCorrelacoesIndicFile('all')
-
-print(dados)

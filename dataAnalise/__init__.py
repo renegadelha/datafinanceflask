@@ -6,7 +6,9 @@ import yfinance as yf
 def gerarcorrelacaoindividual(ticker, indicador):
     if indicador == 'selic':
         ind_df = consulta_bc(432)
-    else:
+    elif indicador == 'ibcbr':
+        ind_df = consulta_bc(24364)
+    elif indicador == 'ipca':
         ind_df = consulta_bc(433)
     data_inicio = '2014-01-01'
 
@@ -47,7 +49,7 @@ def readCorrelacoesIndicFile(opcao):
     if opcao == 'all':
         return pd.read_pickle('data/correlacoesIndAll.pkl')
     else:
-        return pd.read_pickle('data/correlacoesIndMinhas.pkl')
+        return pd.read_pickle('data/correlacoesIndMinhas3D.pkl')
 
 
 
@@ -62,10 +64,11 @@ def gerarCorrelaAll(opcao):
     for ticker in tickers:
         ipca = gerarcorrelacaoindividual(ticker ,'ipca')
         selic = gerarcorrelacaoindividual(ticker , 'selic')
+        ibcbr = gerarcorrelacaoindividual(ticker, 'ibcbr')
 
-        lista.append([ipca[0], selic[0]])
+        lista.append([ipca[0], selic[0], ibcbr[0]])
 
-    data = pd.DataFrame(lista, index=tickers,columns=['ipca','selic'])
+    data = pd.DataFrame(lista, index=tickers,columns=['ipca','selic','ibcbr'])
     return data
 
 
