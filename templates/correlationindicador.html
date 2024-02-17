@@ -12,7 +12,7 @@
     <form action="/correlacaoindividual" method="post">
         <input type="text" name="ticker">
         <br>
-        <input type="radio" id="ipca" name="indicador_radio" value="ipca">
+        <input type="radio" id="ipca" name="indicador_radio" value="ipca" checked>
         <label for="ipca">IPCA</label><br>
         <input type="radio" id="selic" name="indicador_radio" value="selic">
         <label for="selic">Selic</label><br>
@@ -24,5 +24,6 @@
     <h3>
         Correlação: {{correlac}}
     </h3>
+    {{ plot|safe }}
 </body>
 </html>

@@ -2,10 +2,13 @@ import pandas as pd
 import yfinance as yf
 
 
+
 def gerarcorrelacaoindividual(ticker, indicador):
     if indicador == 'selic':
         ind_df = consulta_bc(432)
-    else:
+    elif indicador == 'ibcbr':
+        ind_df = consulta_bc(24364)
+    elif indicador == 'ipca':
         ind_df = consulta_bc(433)
     data_inicio = '2014-01-01'
 
@@ -13,12 +16,20 @@ def gerarcorrelacaoindividual(ticker, indicador):
 
     ind_df = ind_df[ind_df.index >= data_inicio]
     ind_df = ind_df.resample('M').mean()
+<<<<<<< HEAD
+=======
 
-    cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
-    cotaMensal.index = cotaMensal.index.date
+    if cotaMensal.size - ind_df.size > 0:
+        cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
+
+    cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
+>>>>>>> 5b37ff4d309baeb4d6abe32d3290e28a16a15f7b
+
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
+    df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
+    df_norm.columns = ['indicador', 'stock']
 
-    return round(float(ind_stock.corr().iloc(0)[1][0]), 3)
+    return round(float(df_norm.corr().iloc(0)[1][0]), 3), df_norm
 
 
 #https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
@@ -36,6 +47,33 @@ def readRiscoRetornoFile(opcao):
         return pd.read_pickle('data/riscoRetornoAll.pkl')
     else:
         return pd.read_pickle('data/riscoRetornoMinhas.pkl')
+
+def readCorrelacoesIndicFile(opcao):
+    if opcao == 'all':
+        return pd.read_pickle('data/correlacoesIndAll.pkl')
+    else:
+        return pd.read_pickle('data/correlacoesIndMinhas3D.pkl')
+
+
+
+def gerarCorrelaAll(opcao):
+
+    if opcao == 'all':
+        tickers = getEmpresasListadasAntigas()
+    else:
+        tickers = getMinhasEmpresasListadas()
+
+    lista = []
+    for ticker in tickers:
+        ipca = gerarcorrelacaoindividual(ticker ,'ipca')
+        selic = gerarcorrelacaoindividual(ticker , 'selic')
+        ibcbr = gerarcorrelacaoindividual(ticker, 'ibcbr')
+
+        lista.append([ipca[0], selic[0], ibcbr[0]])
+
+    data = pd.DataFrame(lista, index=tickers,columns=['ipca','selic','ibcbr'])
+    return data
+
 
 
 def calcularRiscoRetJanelasTemp(opcao):

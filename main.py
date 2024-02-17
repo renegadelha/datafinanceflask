@@ -1,6 +1,7 @@
 from flask import *
 import dataAnalise as da
-import plotly.graph_objects as go
+import grafico as gr
+
 
 app = Flask(__name__)
 
@@ -19,11 +20,7 @@ def home():
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):
     df_final = da.readRiscoRetornoFile(opcao)
-    fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
-                              y=df_final['PercRetorno'],
-                              mode='markers',
-                              text=df_final.index))
-    return render_template('calcRiscoRet.html', plot=fig.to_html())
+    return render_template('calcRiscoRet.html', plot=gr.gerarGrafRiscRet(df_final))
 
 @app.route('/correlacaoindividual', methods=['POST','GET'])
 def correlacaotickerindicador():
@@ -31,13 +28,18 @@ def correlacaotickerindicador():
         indicador = request.form.get('indicador_radio')
         ticker = str(request.form.get('ticker'))
 
-        correlacao = da.gerarcorrelacaoindividual(ticker, indicador)
-
-        return render_template('correlationindicador.html', correlac=correlacao)
+        correlacao, graficodados = da.gerarcorrelacaoindividual(ticker, indicador)
+        return render_template('correlationindicador.html', correlac=correlacao, plot=gr.gerarGrafCorrInd(graficodados,indicador))
 
     else:
         return render_template('correlationindicador.html')
 
+@app.route('/correlacaoindicadores', methods=['POST','GET'])
+def correlacaoallindicadores():
+    dataCorr = da.readCorrelacoesIndicFile('minhas')
+
+    return render_template('correlationindicadores.html',
+                           plot=gr.gerarGrafCorrIndicAll3D(dataCorr))
 
 
 if __name__ == "__main__":
