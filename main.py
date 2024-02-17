@@ -10,6 +10,10 @@ def login():
 
 @app.route('/')
 def home():
+    return render_template('home.html')
+
+@app.route('/')
+def home():
     return render_template('index.html')
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])

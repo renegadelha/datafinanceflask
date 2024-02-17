@@ -1,0 +1,62 @@
+
+.PALHETA{
+    --corMenuPrimaria: #11354e;
+    --corMenuSecundaria: #11354e;
+    --corMenuTerciaria: #156f8e;
+    --corMenuQuartenaria: #11202f;
+    --corSecundaria: #156f8e;
+    --corPainelGradiente01: #156f8e;
+    --corPainelGradiente02: #2d5571;
+    --cotacoesTopoCorFundo: #28495f;
+    --cotacoesTopoCorFonte: #e8e8e8;
+    --cotacoesTopoSubindo: #37dd9f;
+    --cotacoesTopoCaindo: #ff4040;
+}
+
+
+
+body{
+    background-color: #1f2029;
+}
+
+.custom-navbar {
+    background-color: #2b2e38;
+}
+    
+    
+.menuItem{
+    font-family: "Arial Rounded MT";
+    font-size: 10px;
+}
+
+ul{
+    margin: 5px; 
+}
+
+
+    
+#mostrar{
+    display: none; 
+}
+    
+#op1:hover #mostrar{
+    display: block;
+    
+}
+    
+#op2:hover #mostrar{
+    display: block;
+}
+    
+#op3:hover #mostrar{
+    display: block;
+    
+}
+#op4:hover #mostrar{
+    display: block;
+    
+}
+    
+.no-transition .dropdown-menu {
+    transition: none;
+}

@@ -9,10 +9,10 @@ def gerarcorrelacaoindividual(ticker, indicador):
         ind_df = consulta_bc(433)
     data_inicio = '2014-01-01'
 
-    cotaMensal = yf.Ticker(ticker + ".SA").history(start=data_inicio).resample('ME')['Close'].mean().to_frame()
+    cotaMensal = yf.Ticker(ticker + ".SA").history(start=data_inicio).resample('M')['Close'].mean().to_frame()
 
     ind_df = ind_df[ind_df.index >= data_inicio]
-    ind_df = ind_df.resample('ME').mean()
+    ind_df = ind_df.resample('M').mean()
 
     cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
     cotaMensal.index = cotaMensal.index.date
