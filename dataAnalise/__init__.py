@@ -1,7 +1,36 @@
 import pandas as pd
+import numpy as np
 import yfinance as yf
+from dao import *
 
 
+def gerarrankingdividendos(dados):
+    dataf = []
+    for empresa in dados:
+        data = dyanalise(empresa)
+        if 0 != data:
+            dataf.append(data)
+
+    df = pd.DataFrame(np.array(dataf), columns=['ticker', 'valorDividendo', 'mediana', 'media'])
+    df = df.astype({"ticker": str, "valorDividendo": float, "mediana": float, "media": float})
+    df.drop(df[df['mediana'] < 1].index, inplace=True)
+
+    df = df.sort_values(by=['mediana'], ascending=False)
+    df = df.reset_index()
+    df = df.drop(columns=['index'])
+    return df
+
+def dyanalise(name):
+    empresa = name + '.SA'
+    comp = yf.Ticker(empresa)
+    hist2 = comp.history(start='2013-01-01')
+    if (len(hist2) == 0):
+        return 0
+    somaDiv = hist2['Dividends'].resample('Y').sum()
+    meanPrice = hist2['Close'].resample('Y').median()
+    result = somaDiv / meanPrice * 100
+
+    return [name, float("{0:.2f}".format(somaDiv.median())), float("{0:.2f}".format(result.median())), float("{0:.2f}".format(result.mean()))]
 
 def gerarcorrelacaoindividual(ticker, indicador):
     if indicador == 'selic':
@@ -16,14 +45,12 @@ def gerarcorrelacaoindividual(ticker, indicador):
 
     ind_df = ind_df[ind_df.index >= data_inicio]
     ind_df = ind_df.resample('M').mean()
-<<<<<<< HEAD
-=======
+
 
     if cotaMensal.size - ind_df.size > 0:
         cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
 
     cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
->>>>>>> 5b37ff4d309baeb4d6abe32d3290e28a16a15f7b
 
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
     df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
@@ -50,10 +77,15 @@ def readRiscoRetornoFile(opcao):
 
 def readCorrelacoesIndicFile(opcao):
     if opcao == 'all':
-        return pd.read_pickle('data/correlacoesIndAll.pkl')
+        return pd.read_pickle('data/correlacoesIndAll3D.pkl')
     else:
         return pd.read_pickle('data/correlacoesIndMinhas3D.pkl')
 
+def readRankingDividendos(opcao):
+    if opcao == 'all':
+        return pd.read_pickle('data/rankingdividendosAll.pkl')
+    else:
+        return pd.read_pickle('data/rankingdividendosMinhas.pkl')
 
 
 def gerarCorrelaAll(opcao):
@@ -132,15 +164,3 @@ def gerarDataRetornos(ticker):
                         columns=['interv', 'percGanhos', 'Rentb'])
     data = data.set_index('interv')
     return data[-1:]
-
-def getEmpresasListadasAntigas():
-    return ['ABCB4', 'ABEV3', 'AGRO3', 'ALUP11', 'ARZZ3', 'B3SA3', 'BBAS3', 'BBDC4', 'BBSE3', 'BEEF3', 'BPAN4',
-               'BRAP4', 'BRSR6', 'CAMB3', 'CCRO3', 'CIEL3', 'CMIG4', 'CPFE3', 'CPLE6', 'CSMG3', 'CSUD3', 'CYRE3',
-               'DEXP3', 'EGIE3', 'ENGI11', 'EVEN3', 'FESA4', 'FLRY3', 'FRAS3', 'GGBR4', 'GOAU4', 'GRND3', 'HYPE3',
-               'ITSA4', 'ITUB4', 'JHSF3', 'KEPL3', 'LEVE3', 'LREN3', 'MILS3', 'MULT3', 'ODPV3', 'PETR4', 'PINE4',
-               'PNVL3', 'POMO4', 'POSI3', 'PSSA3', 'RANI3', 'RAPT4', 'RENT3', 'ROMI3', 'SANB11', 'SBSP3', 'SLCE3',
-               'SMTO3', 'STBP3', 'TAEE11', 'TASA4', 'TGMA3', 'TIMS3', 'TOTS3', 'TRIS3', 'TRPL4', 'TUPY3', 'UGPA3',
-               'UNIP6', 'VALE3', 'VIVT3', 'VLID3', 'VULC3', 'WEGE3']
-
-def getMinhasEmpresasListadas():
-    return ['BBSE3', 'PSSA3', 'BBAS3','BRSR6','ITSA4','EGIE3','ALUP11','TAEE11','KLBN4','VALE3', 'TUPY3','FESA4']

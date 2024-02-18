@@ -1,20 +1,20 @@
 from flask import *
 import dataAnalise as da
 import grafico as gr
-
-
+import atualizar
+import carteira as gf
 app = Flask(__name__)
 
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
 @app.route('/')
-def home():
+def homeantiga():
     return render_template('index.html')
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
@@ -36,10 +36,36 @@ def correlacaotickerindicador():
 
 @app.route('/correlacaoindicadores', methods=['POST','GET'])
 def correlacaoallindicadores():
-    dataCorr = da.readCorrelacoesIndicFile('minhas')
+    if request.method == 'GET':
+        dataCorr = da.readCorrelacoesIndicFile('all')
+    else:
+        dataCorr = da.readCorrelacoesIndicFile('minhas')
 
     return render_template('correlationindicadores.html',
                            plot=gr.gerarGrafCorrIndicAll3D(dataCorr))
+
+@app.route('/atualizarcorrelacaoindicadores')
+def atualizarcorrelacaoallindicadores():
+    atualizar.atualizar()
+    return redirect('/correlacaoindicadores')
+
+@app.route("/gerarminhacarteira") #decorator
+def gerarminhacarteira():
+    data, grid = gf.gerarPercentuais()
+    lista = [['ticker', 'percentual']]
+    for key, val in data.items():
+        lista.append([key, val])
+
+    return render_template('minhacarteira.html', data=lista, grid=grid)
+
+@app.route('/rankingdividendos/<opcao>', methods=['GET','POST'])
+def gerarrankingdividendos(opcao):
+    if opcao == 'all':
+        data = da.readRankingDividendos('all').head(40)
+    else:
+        data = da.readRankingDividendos('minhas')
+
+    return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
 
 
 if __name__ == "__main__":

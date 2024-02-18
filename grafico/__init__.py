@@ -1,4 +1,9 @@
 import plotly.graph_objects as go
+import plotly.express as px
+def gerarBarGrafDividendos(data):
+
+    fig = px.bar(data, x='ticker', y='mediana', hover_data=['valorDividendo', 'media'])
+    return fig.to_html()
 
 def gerarGrafRiscRet(df_final):
     fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
