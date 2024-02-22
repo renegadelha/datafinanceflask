@@ -23,7 +23,7 @@ def gerarrankingdividendos(dados):
 def dyanalise(name):
     empresa = name + '.SA'
     comp = yf.Ticker(empresa)
-    hist2 = comp.history(start='2013-01-01')
+    hist2 = comp.history(period='15y')
     if (len(hist2) == 0):
         return 0
     somaDiv = hist2['Dividends'].resample('Y').sum()
@@ -66,7 +66,6 @@ def consulta_bc(codigo_bcb):
     df['data'] = pd.to_datetime(df['data'], dayfirst=True)
     df.set_index('data', inplace=True)
     return df
-
 
 
 def readRiscoRetornoFile(opcao):
@@ -152,7 +151,7 @@ def gerarDataRetornos(ticker):
     intervalo = 4
     maxSemanas = 192
 
-    hist = yf.download(ticker, start='2014-01-01')
+    hist = yf.download(ticker, period='15y')
     week = hist.resample('W').mean()
 
     for i in range(48, maxSemanas, intervalo):

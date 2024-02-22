@@ -10,6 +10,11 @@ def gerarGrafRiscRet(df_final):
                               y=df_final['PercRetorno'],
                               mode='markers',
                               text=df_final.index))
+    fig.update_layout(
+        xaxis_title= df_final.columns[0],
+        yaxis_title= df_final.columns[1]
+
+    )
     return fig.to_html()
 
 def gerarGrafCorrIndicAll3D(df_final):
