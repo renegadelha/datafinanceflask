@@ -2,12 +2,35 @@ from flask import *
 import dataAnalise as da
 import grafico as gr
 import atualizar
+import dao
 import carteira as gf
+
 app = Flask(__name__)
+app.secret_key = 'tem_que_definir_chave_secreta'
 
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user', default=None)
+    return redirect('/login')
+
+@app.route('/verificarlogin', methods=['POST','GET'])
+def verificarlogin():
+    if request.method == 'GET':
+        user = 'rene@rene.com'
+        senha = '123'
+    else:
+        user = request.form.get('user')
+        senha = request.form.get('password')
+
+    if dao.login(user, senha):
+        session['user'] = user
+        return render_template('logado.html', usuario=user)
+    else:
+        render_template('home.html')
 
 @app.route('/home')
 def home():
