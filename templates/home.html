@@ -1,96 +1,136 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFinance</title>
+</head>
+<body>
+    {% include "NavBar.html" %}
+    {% include "Carousel.html" %}
+    
 
-        <!-- Bootstrap CSS -->  
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/css/home.css">
-        <title>datafinance</title>
-    </head>
-    <body>
-        <!-- Just an image -->
-        <nav class="navbar custom-navbar">
-            
-                <ul class="menuItem list-inline">
-                
-                    <li id="op1" class=" list-inline-item nav-item dropdown">
-                        
-                        <a class="dropdown text-decoration-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" >
-                            <h6><p class="font-weight-bold">OPCAO</p></h6>
-                        </a>
-                        <div id="mostrar" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                          </div>
-                    </li>
+    <div class='containerMain'>
+        <div class='container-fluid container'>
+  <div class="row">
+    <nav class='col-2 d-inline-block sidebar'>
+      <div class="sidebar-sticky ">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <h6 class="sidebarHeading d-flex justify-content-between align-items-center mb-1 text-muted">
+          <span class='sidebarHeading'>dados</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              info
+            </a>
+          </li>
+        </ul>
 
-                    <li id="op2" class=" list-inline-item nav-item dropdown">
-                        
-                        <a class="dropdown text-decoration-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" >
-                            <h6><p class="font-weight-bold">OPCAO</p></h6>
-                        </a>
-                        <div id="mostrar" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                          </div>
-                    </li>
-                    
-                    <li id="op3" class="list-inline-item nav-item dropdown">
-                        <a class="dropdown text-decoration-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" >
-                            <h6><p class="font-weight-bold">OPCAO</p></h6>
-                        </a>
-                        <div id="mostrar" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                          </div>
-                    </li> 
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <h6 class="sidebarHeading d-flex justify-content-between align-items-center mb-1 text-muted">
+          <span class='styles.sidebarHeading'>dados</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              info
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      </nav>
 
-                    <li id="op4" class="list-inline-item nav-item dropdown">
-                        <a class="dropdown text-decoration-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" >
-                            <h6><p class="font-weight-bold">OPCAO</p></h6>
-                        </a>
-                        <div id="mostrar" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                            <a class="dropdown-item" href="#">#######</a>
-                          </div>
-                    </li> 
+      <div class='container-fluid col-10 dashboardItem'>
+        <div class='row'>
+          
 
-                </ul>
-            </div>
-            <div>
-                <a href="testeCarousel.html">Carousel</a>
-            </div>
+        <div class='col-8 dashboard'><h3>Dashboard</h3></div>
 
-            <div class="login">
-                <a class="text-decoration-none" href="login.html" >LOGIN</a>               
-            </div>
-        </nav>
-            
-        <div class="container">
-            {% block content %}{% endblock %}
+        <div class='seach-buttons col-4'>
+        <button type="button" class="btn btn-outline-primary import">Importar</button>
+        <button type="button" class="btn btn-outline-secondary export">Exportar</button>
+        <button type="button" class="btn btn-outline-success month">Mes</button> 
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    </body>
+        </div>   
+        <hr></hr>
+        {% include "table.html" %}
+        {% include "sidebar.html" %}
+      </div>
+
+      </div>
+      </div>
+      
+      
+
+      </div>
+
+    
+
+
+</body>
 </html>

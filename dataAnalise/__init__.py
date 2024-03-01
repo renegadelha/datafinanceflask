@@ -16,14 +16,14 @@ def gerarcorrelacaoindividual(ticker, indicador):
 
     ind_df = ind_df[ind_df.index >= data_inicio]
     ind_df = ind_df.resample('M').mean()
-<<<<<<< HEAD
-=======
+
+
 
     if cotaMensal.size - ind_df.size > 0:
         cotaMensal.drop(cotaMensal.tail(cotaMensal.size - ind_df.size).index, inplace=True)
 
     cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
->>>>>>> 5b37ff4d309baeb4d6abe32d3290e28a16a15f7b
+
 
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
     df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())

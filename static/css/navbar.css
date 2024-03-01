@@ -1,0 +1,32 @@
+h1{
+    color: blue;
+}
+
+.menuItem{
+
+    font-family: "Arial Rounded MT";
+    font-size: 10px;
+}
+ul{
+   margin: 5px; 
+}
+a{
+    color: white;    
+}
+
+:global(#mostrar){
+    display: none;
+}
+
+:global(#info:hover #mostrar){
+    display: block;
+
+}
+
+.custom-navbar {
+    background-color: #334752; /* Substitua pelo código da cor desejada */
+  }
+
+.no-transition .dropdown-menu {
+    transition: none; /* Desativa a transição de animação */
+}
