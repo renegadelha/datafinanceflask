@@ -8,6 +8,12 @@ import carteira as gf
 app = Flask(__name__)
 app.secret_key = 'tem_que_definir_chave_secreta'
 
+@app.route('/lista')
+def listar():
+    pessoas = ['rene','maria','lala']
+    return render_template('teste.html', lista=pessoas)
+
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -23,18 +29,18 @@ def verificarlogin():
         user = 'rene@rene.com'
         senha = '123'
     else:
-        user = request.form.get('user')
+        user = request.form.get('username')
         senha = request.form.get('password')
 
     if dao.login(user, senha):
         session['user'] = user
-        return render_template('logado.html', usuario=user)
+        return render_template('home2.html', usuario=user)
     else:
         render_template('home.html')
 
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template('home2.html')
 
 @app.route('/')
 def homeantiga():

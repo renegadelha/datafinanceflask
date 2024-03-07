@@ -9,19 +9,7 @@
 <body>
     <H1>Correlação Das Ações com os Indicadores Macroeconômicos</H1>
     <h2>Descrição</h2>
-    <div style="display: flex">
-        <form action="/correlacaoindicadores" method="post">
-            <button type="submit" >Minhas Ações</button>
-        </form>
-        <form action="/correlacaoindicadores" method="get">
-            <button type="submit" >Todas as Ações</button>
-        </form>
-        <form action="/atualizarcorrelacaoindicadores" method="get">
-            <button type="submit" >Atualizar</button>
-        </form>
-    </div>
 
     {{ plot|safe }}
-
 </body>
 </html>
