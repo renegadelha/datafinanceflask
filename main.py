@@ -22,9 +22,9 @@ def login():
 def home():
     return render_template('home.html')
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+@app.route('/teste')
+def teste():
+    return render_template('hometeste.html')
 
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
