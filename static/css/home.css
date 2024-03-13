@@ -13,50 +13,191 @@
     --cotacoesTopoCaindo: #ff4040;
 }
 
-
-
-body{
-    background-color: #1f2029;
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-.custom-navbar {
-    background-color: #2b2e38;
+  /*navbar*/
+
+  nav{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #11354e;
+    padding: 5px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
 }
+
+
+.nav-itens{
+    list-style: none;
+    display: flex;
+    padding-left: 10px;
     
-    
-.menuItem{
-    font-family: "Arial Rounded MT";
-    font-size: 10px;
 }
 
 ul{
-    margin: 5px; 
+    margin-top: 10px;
 }
 
+.nav-itens>li>a{
+    margin-right: 10px;
+    text-decoration: none;
+    color: #E1E5F2;
+}
 
-    
-#mostrar{
-    display: none; 
+.logo{
+    font-weight: 800;
+    font-size: 25px;
 }
-    
-#op1:hover #mostrar{
-    display: block;
-    
+
+.login{
+    padding: 10px 40px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(214, 213, 213);
+    color: black;
+    cursor: pointer;
 }
-    
-#op2:hover #mostrar{
-    display: block;
+
+.login:hover{
+    background-color: rgb(122, 44, 44);
+    transition: 0.5s;
 }
-    
-#op3:hover #mostrar{
-    display: block;
-    
+
+.registro{
+    padding: 10px 40px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
-#op4:hover #mostrar{
-    display: block;
-    
+
+.registro:hover{
+    background-color: rgb(122, 44, 44);
+    transition: 0.5s;
 }
-    
-.no-transition .dropdown-menu {
-    transition: none;
+
+button .fas{
+  position: relative;
+  width: 70px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background-color: #11354e;
+  cursor: pointer;
 }
+
+/*sidebar*/
+
+ul{
+    margin-right: 0; 
+}
+
+  body{
+    background: #fff;
+  }
+  
+  #sidebar{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background: #022b3a;
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    z-index: 9998;
+  }
+
+  #sidebar, nav {
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical se necessário */
+}
+
+  #sidebar ul{
+    transition: width 0.2s linear;
+    margin-top: 80px;
+  }
+
+  .logo{
+    text-align: center;
+    display: flex;
+    margin: 10px 0 0 10px;
+  }
+  
+  .logo img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+  
+  #sidebar .logo span{
+    font-weight: bold;
+    padding-left: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  #sidebar a{
+    position: relative;
+    color: #E1E5F2;
+    font-size: 14px;
+    display: table;
+    width: 300px;
+    padding: 10px;
+  }
+  
+  #sidebar .fas{
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 14px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #sidebar .logout{
+    bottom: 0;
+  }
+  
+  #sidebar .nav-item{
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+  }
+  
+  #sidebar a:hover{
+    background: #eee;
+  }
+  
+  #sidebar:hover{
+    width: 280px;
+    transition: all 0.5s ease;
+  }
+
+  /*section*/
+  @media (max-width: 600px){
+    .main-content {
+      /*margin-top: -855px;*/
+      margin-left: 90px;
+      background-color: #fff;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      width: calc(100% - 90px); /*Subtrai a largura da barra lateral */
+      height: 100vh;
+      display: flex;
+    } 
+}
+

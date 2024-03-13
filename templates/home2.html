@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home2.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        
+        <div class="links"></div>
+        <ul class="nav-itens">
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+        </ul>
+        <div class="buttons">
+            <a href="login"><button class="login" id="loginbtn" onclick='MudaPalavra()'>Login</button></a>
+            <button  class="logout">
+                <a href="login">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </button>
+        </div>
+        
+      </nav>
+      {% include "sidebar.html" %}
+      <div class="container">
+            <section class="carousel">
+                {% include "Carousel.html" %}
+            </section>
+            <section class="">
+                <iframe name="teste" src="{{url_for('calcularRiscoRetorno', opcao='get')}}" width="900" height="600"></iframe>
+            </section>
+            <section class="table">
+                {% include "table.html" %}
+            </section>
+
+            
+        </div>
+
+        <script src="../static/js/login.js"></script>
+
+</body>
+</html>

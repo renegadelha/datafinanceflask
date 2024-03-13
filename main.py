@@ -9,13 +9,30 @@ app = Flask(__name__)
 def login():
     return render_template('login.html')
 
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
+
+@app.route('/teste')
+def teste():
+    return render_template('./hometeste.html')
+
 @app.route('/')
 def home():
-    return render_template('./home.html')
+    return render_template('./home2.html')
+
+#@app.route('/')
+#def home2():
+#    return render_template('./home.html')
+
+@app.route('/testes')
+def testes():
+    return render_template('./testes.html')
 
 @app.route('/antiga')
 def homeantiga():
     return render_template('index.html')
+
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):
