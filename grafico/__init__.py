@@ -1,10 +1,20 @@
 import plotly.graph_objects as go
+import plotly.express as px
+def gerarBarGrafDividendos(data):
+
+    fig = px.bar(data, x='ticker', y='mediana', hover_data=['valorDividendo', 'media'])
+    return fig.to_html()
 
 def gerarGrafRiscRet(df_final):
     fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
                               y=df_final['PercRetorno'],
                               mode='markers',
                               text=df_final.index))
+    fig.update_layout(
+        xaxis_title= df_final.columns[0],
+        yaxis_title= df_final.columns[1]
+
+    )
     return fig.to_html()
 
 def gerarGrafCorrIndicAll3D(df_final):
