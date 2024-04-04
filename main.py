@@ -25,18 +25,15 @@ def logout():
 
 @app.route('/verificarlogin', methods=['POST','GET'])
 def verificarlogin():
-    if request.method == 'GET':
-        user = 'rene@rene.com'
-        senha = '123'
-    else:
-        user = request.form.get('username')
-        senha = request.form.get('password')
+
+    user = request.form.get('username')
+    senha = request.form.get('password')
 
     if dao.login(user, senha):
         session['user'] = user
         return render_template('home2.html', usuario=user)
     else:
-        render_template('home.html')
+        return render_template('login.html',msg_erro='usuário ou senha incorreta')
 
 @app.route('/home')
 def home():
