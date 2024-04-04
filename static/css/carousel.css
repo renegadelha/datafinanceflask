@@ -5,8 +5,7 @@
   }
   
   body {
-    color: #EAC435;
-    padding-top: 57px;
+    color: #ffeba7;
   }
   
   @keyframes slide {
@@ -22,11 +21,9 @@
     position: relative;
     overflow: hidden;
     padding: 10px 0;
-    background-color: #1C3766;
+    background-color: #1f2029;
     white-space: nowrap;
     position: relative;
-    border-radius: 10px 10px 0px 0px;
-
   }
   
   .acoes:before, .acoes:after {

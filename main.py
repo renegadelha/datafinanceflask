@@ -39,9 +39,15 @@ def verificarlogin():
 def home():
     return render_template('home2.html')
 
+
 @app.route('/')
-def homeantiga():
-    return render_template('index.html')
+def home():
+    return render_template('home.html')
+
+@app.route('/teste')
+def teste():
+    return render_template('hometeste.html')
+
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hometeste.css') }}">
+    
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <span class="logo_name">Usuario</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+          <a href="#">
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Correlation</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-compass' ></i>
+          <span class="link_name">Risk Return</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-history'></i>
+          <span class="link_name">Indicators</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog' ></i>
+          <span class="link_name">Setting</span>
+        </a>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Sair</div><!--======= aparecer apenas quando tiver logado =========-->
+          </div>
+          <i class='bx bx-log-out' ></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section"><!--====== navbar ======-->
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text"></span>
+      {% include "seach.html" %}
+      <div class="profile">
+        <img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+    </div>
+      <div class="carousel">
+        {% include "carousel.html" %}
+      </div>
+      <div class="content">
+        <iframe name="teste" src="{{url_for('correlacaoallindicadores')}}" width="900" height="900"></iframe>
+      </div>
+  </section>
+  
+  <div class="one"></div>
+  <script>
+  
+  </script>
+</body>
+</html>
