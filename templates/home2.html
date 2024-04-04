@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/home2.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        
+        <div class="links"></div>
+        <ul class="nav-itens">
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+            <li><a href="">Link</a></li>
+        </ul>
+        <div class="buttons">
+            <a href="login"><button class="login" >Login</button></a>
+            <a href="registro"><button class="registro">Registrar-se</button></a>
+            <button  class="logout">
+                <a href="login">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </button>
+        </div>
+        
+      </nav>
+      <div class="container">
+            <section class="carousel">
+                {% include "Carousel.html" %}
+            </section>
+            <section class="graph">
+                {% include "table.html" %}
+            </section>
+
+        </div>
+
+
+</body>
+</html>
