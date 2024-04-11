@@ -53,6 +53,7 @@ def gerarcorrelacaoindividual(ticker, indicador):
     cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
 
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
+    #normalizaçao dos dados
     df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
     df_norm.columns = ['indicador', 'stock']
 

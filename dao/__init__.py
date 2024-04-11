@@ -1,9 +1,46 @@
+import psycopg2
+
+def conectardb():
+    con = psycopg2.connect(
+        host='localhost',
+    database = 'datafinanceflask',
+        user = 'postgres',
+    password = '12345'
+    )
+
+    return con
+
+def inseriruser(email, senha, nome):
+    conexao = conectardb()
+    sql = f"INSERT INTO usuarios(email,senha, nome) VALUES ('{email}','{senha}','{nome}')"
+
+    try:
+        cur = conexao.cursor()
+        # execute the INSERT statement
+        cur.execute(sql)
+
+    except psycopg2.IntegrityError:
+        conexao.rollback()
+        exito = False
+    else:
+        conexao.commit()
+        exito = True
 
 def login(user, passw):
-    if user == 'rene@rene.com' and passw == '123':
+    conexao = conectardb()
+
+    cur = conexao.cursor()
+
+    sql = f"select count(*) from usuarios where email ='{user}' and senha = '{passw}' "
+    cur.execute(sql)
+    resp = cur.fetchall()
+    conexao.close()
+
+    if resp[0][0] == 1:
         return True
     else:
         return False
+
 
 def getEmpresasListadasAntigas():
     return ['ABCB4', 'ABEV3', 'AGRO3', 'ALUP11', 'ARZZ3', 'B3SA3', 'BBAS3', 'BBDC4', 'BBSE3', 'BEEF3', 'BPAN4',
@@ -20,3 +57,8 @@ def getMinhasEmpresasListadas():
 def getCarteira():
     return {'SIMH3':30, 'TAEE11':6, 'ALUP11':13, 'EGIE3':8, 'KLBN11':11, 'ITSA4':30,
              'PSSA3':7, 'BBSE3':9, 'VBBR3':13, 'BRSR6':22, 'TUPY3':6, 'BBAS3':6, 'VALE3':3}
+
+
+
+resp = login('rene@rene.com','12345')
+print(resp)

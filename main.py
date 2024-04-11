@@ -18,6 +18,28 @@ def listar():
 def login():
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('user', default=None)
+    return redirect('/login')
+
+@app.route('/verificarlogin', methods=['POST','GET'])
+def verificarlogin():
+
+    user = request.form.get('username')
+    senha = request.form.get('password')
+
+    if dao.login(user, senha):
+        session['user'] = user
+        return render_template('home2.html', usuario=user)
+    else:
+        return render_template('login.html',msg_erro='usuário ou senha incorreta')
+
+@app.route('/home')
+def home():
+    return render_template('home2.html')
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
