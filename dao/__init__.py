@@ -16,15 +16,15 @@ def inseriruser(email, senha, nome):
 
     try:
         cur = conexao.cursor()
-        # execute the INSERT statement
         cur.execute(sql)
 
     except psycopg2.IntegrityError:
         conexao.rollback()
-        exito = False
+        return False
     else:
         conexao.commit()
-        exito = True
+        return True
+
 
 def login(user, passw):
     conexao = conectardb()
