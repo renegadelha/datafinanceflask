@@ -1,0 +1,2 @@
+sidebar = acoes bolsa de valores, cripto, dividendos, fiis nacional e internacional
+logado>carteira = entra na pagina da carteira do usuario

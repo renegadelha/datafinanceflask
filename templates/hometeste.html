@@ -9,75 +9,97 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
-<body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <span class="logo_name">Usuario</span>
+   <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <span class="logo_name"><a href="/">User</a></span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" onclick="op1(this)">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name">Risk Return</span>
+          </a>
+        </li>
+        <li>
+            <a href="#" onclick="op2(this)">
+              <i class='bx bx-grid-alt' ></i>
+              <span class="link_name">Wallet</span>
+            </a>
+        </li>
+        <li>
+          <a href="#" onclick="op3()">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name">Ranking Dividendos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="op4()">
+            <i class='bx bx-grid-alt'></i>
+            <span class="link_name">data 4</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="op5()">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name">data 5</span>
+          </a>
+        </li>
+        <li>
+          <div class="profile-details">
+            <div class="profile-content">
+              <!--<img src="image/profile.jpg" alt="profileImg">-->
+            </div>
+            <div class="name-job">
+              <a href="/login">
+                <div class="profile_name">Enter</div>
+                <i class='bx bx-door-open'></i>
+              </a>
+            </div>
+  
+          </div>
+        </li>
+      </ul>
     </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-      </li>
-      <li>
-          <a href="#">
-            <i class='bx bx-plug' ></i>
-            <span class="link_name">Correlation</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">Risk Return</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-history'></i>
-          <span class="link_name">Indicators</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog' ></i>
-          <span class="link_name">Setting</span>
-        </a>
-      </li>
-      <li>
-        <div class="profile-details">
-          <div class="profile-content">
-            <!--<img src="image/profile.jpg" alt="profileImg">-->
-          </div>
-          <div class="name-job">
-            <div class="profile_name">Sair</div><!--======= aparecer apenas quando tiver logado =========-->
-          </div>
-          <i class='bx bx-log-out' ></i>
+    
+    <section class="home-section"><!--====== navbar ======-->
+      <div class="home-content">
+        <i class='bx bx-menu' ></i>
+        <span class="text"></span>
+        {% include "seach.html" %}
+        <div class="profile" id="profile">
+          <img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
+          <!--<i class="fa-solid fa-caret-down"></i>-->
         </div>
-      </li>
-    </ul>
-  </div>
-  <section class="home-section"><!--====== navbar ======-->
-    <div class="home-content">
-      <i class='bx bx-menu' ></i>
-      <span class="text"></span>
-      {% include "seach.html" %}
-      <div class="profile">
-        <img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
-        <i class="fa-solid fa-caret-down"></i>
       </div>
-    </div>
-      <div class="carousel">
-        {% include "carousel.html" %}
+      <div class="data">
+          {% include "data.html" %}
+          <iframe id="iframeTarget" name="teste" src="{{url_for('atualizarcorrelacaoallindicadores')}}" width="900" height="900"></iframe>
       </div>
-      <div class="content">
-        <iframe name="teste" src="{{url_for('correlacaoallindicadores')}}" width="900" height="900"></iframe>
-      </div>
-  </section>
+      
+    </section>
+     
+    
+      <script src="../static/js/home.js"></script>
   
-  <div class="one"></div>
-  <script>
+      <script>
+        function op1() {
+        document.getElementById('iframeTarget').src = "{{url_for('atualizarcorrelacaoallindicadores')}}";
+        }
+        function op2() {
+        document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+        }
+        function op3() {
+        document.getElementById('iframeTarget').src = "{{url_for('correlacaotickerindicador')}}";
+        }
+        function op4() {
+        document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+        }
+        function op5() {
+        document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+        }
+      </script>
+      
   
-  </script>
-</body>
+  </body>
 </html>

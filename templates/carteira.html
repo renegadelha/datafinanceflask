@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Sign up / Login Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/carteira.css') }}">
+
+</head>
+<body>
+	
+	<header class="header" id="header">
+		<nav class="nav container">
+		   <a href="/verificarlogin" class="nav-logo">Logo</a>
+
+		   <div class="nav-menu" id="nav-menu">
+			  <ul class="nav-list">
+				 <li class="nav-item">
+					<a href="#" class="nav-link" onclick="op1()">Risk Return</a>
+				 </li>
+
+				 <li class="nav-item">
+					<a href="#" class="nav-link" onclick="op2()">Correlation individual</a>
+					<!--<a href="/correlacaoindicadores" class="nav-link">Correlation indicators</a>--><!--criar dropdown(dividentos)-->
+				 </li>
+
+				 <li class="nav-item">
+					<a href="#" class="nav-link" onclick="op3()">Correlation indicators</a>
+				 </li>
+
+				 <li class="nav-item">
+					<a href="#" class="nav-link" onclick="op4()">Dividends</a>
+				 </li>
+			  </ul>
+
+			  <div class="nav-close" id="nav-close">
+				 <i class="ri-close-line"></i>
+			  </div>
+		   </div>
+
+		   <div class="nav-actions">
+
+			  <i class="ri-search-line nav-search" id="search-btn"></i>
+
+
+				<!--PHOTO PROFILE-->
+			  <div class="profile">
+				<img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
+
+				<i class="ri-user-line nav-login" id="login-btn"></i>
+			  </div>
+			  
+			  <div id="submenu" class="submenu">
+				<div class="card-container">
+				  <div class="card-img">
+					<img class="round" src="../static/Imagens/perfil.jpg" width="100%">
+				  </div>
+				  <h3>nathan</h3>
+				  <h6>paraiba</h6>
+				  <p>investor <br> wallet</p>
+				  <div class="buttons">
+					<button id="import" class="btn1"><a href="#">importar</a></button><!--CASO ELE JA TENHA IMPORTADO UMA CARTEIRA ELE PODE IMPORTAR OUTRA E SUBISTITUIR A ANTIGA-->
+					<button  id="wallet" class="btn2"><a href="/carteira">carteira</a></button><!--CASO JA TENHA IMPORTAR ELE MOSTRA A CARTEIRA, CASO NAO ELE EMITE UM ALERTA PARA IMPORTAR-->
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="nav-toggle" id="nav-toggle">
+				 <i class="ri-menu-line"></i>
+			  </div>
+		   </div>
+		</nav>
+	 </header>
+
+	 <!--==================== SEARCH ====================-->
+	 <div class="search" id="search">
+		<form action="" class="search-form">
+		   <i class="ri-search-line search-icon"></i>
+		   <input type="search" placeholder="What are you looking for?" class="search-input">
+		</form>
+
+		<i class="ri-close-line search-close" id="search-close"></i>
+	 </div>
+
+	 <!--==================== LOGIN ====================-->
+	 <div class="login" id="login">
+		<form action="" class="login-form">
+		   <h2 class="login-title">Log In</h2>
+		   
+		   <div class="login-group">
+			  <div>
+				 <label for="email" class="login-label">Email</label>
+				 <input type="email" placeholder="Write your email" id="email" class="login-input">
+			  </div>
+			  
+			  <div>
+				 <label for="password" class="login-label">Password</label>
+				 <input type="password" placeholder="Enter your password" id="password" class="login-input">
+			  </div>
+		   </div>
+
+		   <div>
+			  <p class="login-signup">
+				 You do not have an account? <a href="#">Sign up</a>
+			  </p>
+  
+			  <a href="#" class="login-forgot">
+				 You forgot your password
+			  </a>
+  
+			  <button type="submit" class="login-button">Log In</button>
+		   </div>
+		</form>
+
+		<i class="ri-close-line login-close" id="login-close"></i>
+	 </div>
+
+	 <!--==================== MAIN ====================-->
+	 <main class="main">
+		<iframe id="iframeTarget" name="teste" src="{{url_for('atualizarcorrelacaoallindicadores')}}" width="900" height="900"></iframe>
+	 </main>
+		
+	 <script src="../static/js/carteira.js"></script>
+	 <script>
+		function op1() {
+			document.getElementById('iframeTarget').src = "{{url_for('atualizarcorrelacaoallindicadores')}}";
+		}
+		function op2() {
+			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+		}
+		function op3() {
+			document.getElementById('iframeTarget').src = "{{url_for('correlacaotickerindicador')}}";
+		}
+		function op4() {
+			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+		}
+		function op5() {
+			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+		}
+	 </script>
+</body>
+</html>
