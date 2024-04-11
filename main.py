@@ -23,6 +23,21 @@ def logout():
     session.pop('user', default=None)
     return redirect('/login')
 
+
+@app.route('/registraruser', methods=['POST','GET'])
+def registrar_user():
+
+    email = request.form.get('email')
+    senha = request.form.get('password')
+    nome = request.form.get('nome')
+
+
+    if dao.inseriruser(email, senha, nome):
+        return render_template('login.html')
+    else:
+        return render_template('login.html',msg_erro='usuário ou senha incorreta')
+
+
 @app.route('/verificarlogin', methods=['POST','GET'])
 def verificarlogin():
 
@@ -35,12 +50,12 @@ def verificarlogin():
     else:
         return render_template('login.html',msg_erro='usuário ou senha incorreta')
 
-@app.route('/home')
-def home():
+@app.route('/home2')
+def home2():
     return render_template('home2.html')
 
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
@@ -48,6 +63,9 @@ def home():
 def teste():
     return render_template('hometeste.html')
 
+@app.route('/registro')
+def registro_page():
+    return render_template('registro.html')
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):
