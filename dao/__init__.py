@@ -5,42 +5,29 @@ def conectardb():
         host='localhost',
     database = 'datafinanceflask',
         user = 'postgres',
-    password = '12345'
+    password = '123'
     )
 
     return con
 
-def inseriruser(email, senha, nome):
-    conexao = conectardb()
-    sql = f"INSERT INTO usuarios(email,senha, nome) VALUES ('{email}','{senha}','{nome}')"
+@app.route('/login', methods=['POST'])
+def data():
+    nome = request.form['nome']
+    profissao = request.form['profissao']
+    estado = request.form['estado']
+    email = request.form['email']
+    senha = request.form['senha']
+    
+    con = conectardb()
+    cur = con.cursor()
 
-    try:
-        cur = conexao.cursor()
-        cur.execute(sql)
+    cur.execute("INSERT INTO usuarios (nome, email, estado, profissao, senha) VALUES (%s, %s, %s, %s, %s)", (nome, email, estado, profissao, senha))
+    
+    con.commit()
+    cur.close()
+    con.close()
 
-    except psycopg2.IntegrityError:
-        conexao.rollback()
-        return False
-    else:
-        conexao.commit()
-        return True
-
-
-def login(user, passw):
-    conexao = conectardb()
-
-    cur = conexao.cursor()
-
-    sql = f"select count(*) from usuarios where email ='{user}' and senha = '{passw}' "
-    cur.execute(sql)
-    resp = cur.fetchall()
-    conexao.close()
-
-    if resp[0][0] == 1:
-        return True
-    else:
-        return False
-
+    return redirect('/login')
 
 def getEmpresasListadasAntigas():
     return ['ABCB4', 'ABEV3', 'AGRO3', 'ALUP11', 'ARZZ3', 'B3SA3', 'BBAS3', 'BBDC4', 'BBSE3', 'BEEF3', 'BPAN4',
