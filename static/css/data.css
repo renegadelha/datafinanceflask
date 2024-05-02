@@ -1,8 +1,16 @@
-.content{
-    margin:  0 40px;
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h2{
-    padding: 30px 0;
-    color: #1d1b31;;
+.container {
+    text-align: center;
 }
+
+.acoes-dados {
+    display: inline-block;
+}
+

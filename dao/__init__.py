@@ -10,24 +10,31 @@ def conectardb():
 
     return con
 
-@app.route('/login', methods=['POST'])
-def data():
-    nome = request.form['nome']
-    profissao = request.form['profissao']
-    estado = request.form['estado']
-    email = request.form['email']
-    senha = request.form['senha']
-    
+def login(user,senha):
     con = conectardb()
     cur = con.cursor()
+    sq = f"SELECT nome, estado, profissao from registros where email='{user}' and senha='{senha}'  "
+    cur.execute(sq)
+    saida = cur.fetchall()
 
-    cur.execute("INSERT INTO usuarios (nome, email, estado, profissao, senha) VALUES (%s, %s, %s, %s, %s)", (nome, email, estado, profissao, senha))
-    
-    con.commit()
-    cur.close()
-    con.close()
+    print(saida)
+    return saida
 
-    return redirect('/login')
+def inserir_user(nome, email, estado, profissao, senha):
+    conn = conectardb()
+    cur = conn.cursor()
+    try:
+        sql = f"INSERT INTO registros (email, senha, nome, estado, profissao) VALUES ('{email}','{senha}','{nome}', '{estado}', '{profissao}' )"
+        cur.execute(sql)
+    except psycopg2.IntegrityError:
+        conn.rollback()
+        exito = False
+    else:
+        conn.commit()
+        exito = True
+
+    conn.close()
+    return exito
 
 def getEmpresasListadasAntigas():
     return ['ABCB4', 'ABEV3', 'AGRO3', 'ALUP11', 'ARZZ3', 'B3SA3', 'BBAS3', 'BBDC4', 'BBSE3', 'BEEF3', 'BPAN4',
@@ -44,8 +51,3 @@ def getMinhasEmpresasListadas():
 def getCarteira():
     return {'SIMH3':30, 'TAEE11':6, 'ALUP11':13, 'EGIE3':8, 'KLBN11':11, 'ITSA4':30,
              'PSSA3':7, 'BBSE3':9, 'VBBR3':13, 'BRSR6':22, 'TUPY3':6, 'BBAS3':6, 'VALE3':3}
-
-
-
-resp = login('rene@rene.com','12345')
-print(resp)

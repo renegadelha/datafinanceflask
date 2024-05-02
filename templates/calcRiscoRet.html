@@ -14,9 +14,14 @@
         x o percentual de risco (eixo x) em todas as janelas.
 
     </h2>
-    <form action="/calcularRiscoRetorno/minhas">
-        <input type="submit" value="Avaliar minhas ações" />
-    </form>
+    <div style="display: flex">
+        <form action="/calcularRiscoRetorno/minhas" method="get">
+            <button type="submit" >Minhas Ações</button>
+        </form>
+        <form action="/calcularRiscoRetorno/all" method="get">
+            <button type="submit" >Todas as Ações</button>
+        </form>
+    </div>
 
     {{ plot|safe }}
 

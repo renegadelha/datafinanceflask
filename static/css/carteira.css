@@ -72,19 +72,8 @@ img {
 }
 
 .main {
-  position: relative;
-  height: 100vh;
-}
+  padding: 40px 50px 50px 10px;
 
-.main-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: -1;
 }
 
 .search,
@@ -430,6 +419,7 @@ border-radius: 50%;
 border: 1px solid black;
 padding: 7px;
 cursor: pointer;
+margin-left: 30px;
 }
 
 .card-container h3{
@@ -468,7 +458,20 @@ cursor: pointer;
   text-decoration: none;
 }
 
-.btn1 a, .btn2 a{
+.btn2 a{
   color: black;
   text-decoration: none;
 }
+
+label.labelInput input[type="file"] {
+  position: fixed;
+  top: -1000px;
+}
+
+.labelInput .btn1{
+  color: black;
+}
+
+
+
+

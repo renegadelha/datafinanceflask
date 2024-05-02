@@ -4,9 +4,24 @@ import grafico as gr
 import atualizar
 import dao
 import carteira as gf
+import psycopg2
 
 app = Flask(__name__)
 app.secret_key = 'tem_que_definir_chave_secreta'
+
+def connect_to_db():
+    try:
+        conn = psycopg2.connect(
+            database="datafinanceflask",
+            host="localhost",
+            user="postgres",
+            password="123",
+            port="5432"
+        )
+        return conn
+    except Exception as e:
+        print("Erro ao conectar ao banco de dados:", e)
+        return None
 
 @app.route('/lista')
 def listar():
@@ -24,18 +39,23 @@ def logout():
     return redirect('/login')
 
 
-@app.route('/registraruser', methods=['POST','GET'])
+@app.route('/register', methods=['POST','GET'])
 def registrar_user():
 
-    email = request.form.get('email')
-    senha = request.form.get('password')
-    nome = request.form.get('nome')
+        if request.method == 'GET':
+            return render_template('cadastro.html')
+        
+        else:
+            nome = request.form['nome']
+            email = request.form['email']
+            estado = request.form['estado']
+            profissao = request.form['profissao']
+            senha = request.form['senha']
 
-
-    if dao.inseriruser(email, senha, nome):
-        return render_template('login.html')
-    else:
-        return render_template('login.html',msg_erro='usuário ou senha incorreta')
+        if dao.inserir_user(nome,email,estado,profissao,senha):
+            return render_template('login.html')
+        else:
+            return render_template('cadatro.html', msg='erro ao inserir usuário')
 
 
 @app.route('/verificarlogin', methods=['POST','GET'])
@@ -44,18 +64,18 @@ def verificarlogin():
     user = request.form.get('username')
     senha = request.form.get('password')
 
+    saida = dao.login(user, senha)
+    nome = saida[0][0]
+    estado = saida[0][1]
+    profissao = saida[0][2]
+    
     if dao.login(user, senha):
         session['user'] = user
-        return render_template('home2.html', usuario=user)
+        return render_template('logado.html', name=nome, state=estado, profession=profissao)
     else:
         return render_template('login.html',msg_erro='usuário ou senha incorreta')
 
-@app.route('/home2')
-def home2():
-    return render_template('home2.html')
-
-
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('home.html')
 
@@ -63,9 +83,9 @@ def home():
 def teste():
     return render_template('hometeste.html')
 
-@app.route('/registro')
+@app.route('/cadastro')
 def registro_page():
-    return render_template('registro.html')
+    return render_template('cadastro.html')
 
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):
