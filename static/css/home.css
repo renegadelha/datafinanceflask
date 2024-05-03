@@ -73,10 +73,14 @@ img {
 
 .container-datas{
   background-color: #eaeaea;
+  max-width: 89%;
+  height: 55em;
+  margin: auto;
+
 }
 
 .main {
-  padding-top: calc(25%);
+  padding-top: calc(11%);
 }
 
 .main iframe {
