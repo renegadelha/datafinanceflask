@@ -3,6 +3,18 @@ import numpy as np
 import yfinance as yf
 from dao import *
 
+def pegarcotacoes():
+    nomesAcoes = ['bbas3.sa', 'itsa4.sa','brsr6.sa','egie3.sa','alup11.sa']
+
+    dados = yf.download(nomesAcoes)
+    valores = [round(x, 2) for x in list(dados['Adj Close'].ffill().iloc[-1].values)]
+    nomes = [y.replace('.SA', '') for y in list(dados['Adj Close'].columns.values)]
+
+    pares = []
+    for i in range(len(nomes)):
+        pares.append([nomes[i], valores[i]])
+
+    return pares
 
 def gerarrankingdividendos(dados):
     dataf = []

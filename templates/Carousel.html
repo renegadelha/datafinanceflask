@@ -10,22 +10,9 @@
     
     <div class="acoes">
         <div class="acoes-slide">
-          <p>acao 1</p>
-          <p>acao 2</p>
-          <p>acao 3</p>
-          <p>acao 4</p>
-          <p>acao 5</p>
-          <p>acao 6</p>
-          <p>acao 7</p>
-          <p>acao 8</p>
-          <p>acao 9</p>
-          <p>acao 10</p>
-          <p>acao 11</p>
-          <p>acao 12</p>
-          <p>acao 13</p>
-          <p>acao 14</p>
-          <p>acao 15</p>
-          <p>acao 16</p>
+          {% for nome, valor in pares %}
+          <p>{{nome}} - {{valor}}</p>
+          {% endfor %}
         </div>
       </div>
     

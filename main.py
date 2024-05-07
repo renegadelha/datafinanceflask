@@ -119,6 +119,16 @@ def atualizarcorrelacaoallindicadores():
     atualizar.atualizar()
     return redirect('/correlacaoindicadores')
 
+@app.route('/gerariframeprincipal')
+def gerariframeprincipal():
+    pares = da.pegarcotacoes()
+
+    return render_template('Carousel.html', pares=pares)
+
+
+
+
+
 @app.route("/gerarminhacarteira") #decorator
 def gerarminhacarteira():
     data, grid = gf.gerarPercentuais()
