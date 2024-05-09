@@ -413,9 +413,22 @@ a:visited {
   }
 }
 
-/*=============== CAROUSEL ===============*/
+/*= IFRAME-CAROUSEL =*/
 
-
+#iframeCarousel {
+  border: none;
+  width: 80%;
+  height: 400px;
+  margin: 0 auto 10px auto;
+  display: block; 
+}
+#iframeCard {
+  border: none;
+  width: 80%;
+  height: 400px;
+  margin: 20px auto 0 auto;
+  display: block; 
+}
 
 /*FOOTER*/
 
@@ -487,5 +500,7 @@ footer{
   font-size: 13px;
   color: #ffffff;
 }
+
+
 
 

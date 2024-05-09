@@ -125,6 +125,12 @@ def gerariframeprincipal():
 
     return render_template('Carousel.html', pares=pares)
 
+@app.route('/gerariframecard')
+def gerariframecard():
+    pares = da.pegarcotacoes()
+
+    return render_template('cardActions.html', pares=pares)
+
 
 
 
