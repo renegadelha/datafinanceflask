@@ -27,6 +27,11 @@
   max-width: 54em;
 }
 
+.acoes p:hover {
+  color: hsl(54, 87%, 44%);
+  cursor: pointer;
+}
+
 .acoes:before, .acoes:after {
   background: (rgba(255, 255, 255, 0), rgb(31, 32, 41));
 }

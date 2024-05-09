@@ -148,5 +148,6 @@ def gerarrankingdividendos(opcao):
     return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
