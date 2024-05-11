@@ -419,8 +419,10 @@ a:visited {
   border: none;
   width: 80%;
   height: 400px;
-  margin: 0 auto 10px auto;
+  margin: 0 auto;
   display: block; 
+  background-color: #1f00e5;
+  overflow: hidden;
 }
 #iframeCard {
   border: none;
@@ -442,7 +444,7 @@ footer{
 
 .footer{
   padding: 20px 0;
-  background-color: rgb(31, 1, 201);
+  background-color: hsl(230, 51%, 40%);;
 }
 
 .footer .social{

@@ -21,6 +21,7 @@
   margin-bottom: 20px;
   margin-left: calc(50px) ;
   margin-right: calc(50px) ;
+  margin-top: calc(30px);
   background-color: hsl(230, 51%, 40%);
   color: white;
   white-space: nowrap;
