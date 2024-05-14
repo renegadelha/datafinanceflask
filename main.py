@@ -132,7 +132,11 @@ def gerariframecard():
     return render_template('cardActions.html', pares=pares)
 
 
+@app.route('/exibirdetalhesacao/<nome>', methods=['GET'])
+def exibir_detalhes_acao(nome):
 
+    graf = gr.dados_acao(nome)
+    return render_template('tableBR.html', plot=graf, nome=nome)
 
 
 @app.route("/gerarminhacarteira") #decorator

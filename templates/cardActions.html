@@ -60,14 +60,14 @@
                   <tr class="transp">
                       <th colspan="2">
                         <div class="title">
-                          <h3>Ações Populares</h2>
+                          <h3>Ações Populares</h3>
                         </div>
                       </th>
                     </thead>
                   <tbody>
                   {% for nome, valor in pares %}
                     <tr class="info-action">
-                      <td class="action"><a href="">{{nome}}</a></td>
+                      <td class="action"><a href="/exibirdetalhesacao/{{nome}}" target="_parent">{{nome}}</a></td>
                       <td class="name-action">{{valor}}</td><!--SUBSTITUIR PELO NOME COMPLETO DA ACAO E TROCAR PELAS ACOES POPULARES-->
                     </tr>
                   {% endfor %}
