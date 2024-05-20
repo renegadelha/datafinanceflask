@@ -76,16 +76,17 @@ img {
   max-width: 89%;
   height: 47em;
   margin: auto;
-
+  justify-content: center;
 }
 
 .main {
   padding-top: calc(7%);
+  flex-direction: column; /* Centralizar verticalmente */
+  align-items: center; /* Centralizar horizontalmente */
 }
 
 .main iframe {
-  width: 80%;
-  height: 80vh;
+  padding-left: 18%;
 }
 
 
@@ -417,19 +418,18 @@ a:visited {
 
 #iframeCarousel {
   border: none;
-  width: 80%;
-  height: 400px;
-  margin: 0 auto;
+  width: calc(100%);
+  height: 110px;
   display: block; 
-  background-color: #1f00e5;
   overflow: hidden;
 }
 #iframeCard {
   border: none;
-  width: 80%;
-  height: 400px;
-  margin: 20px auto 0 auto;
+  width: calc(100%);
+  height: 430px;
   display: block; 
+  overflow: hidden;
+  margin-left: 30px;
 }
 
 /*FOOTER*/

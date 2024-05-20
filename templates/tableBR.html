@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nome da acao</title>
+    <title>{{nome}}</title>
 </head>
 <body>
-    aqui vai o nome da acao com seu dados.... grafico, valor, site, dividendo, segmento, numero de acionistas
+    
+    <div class="actionData">
+        <h1>{{full_name}}</h1>
+        <h2>{{nome}}</h2>
+        <p>CNPJ</p>
+        <p>codigo da acao</p>
+        <p>Valor: {{valor}}</p>
+        <p>numero de acionistas</p>
+        <p>segmento</p>
+    </div>
+    <br>
+    {{plot|safe}}
+    <br>
+    
 </body>
 </html>

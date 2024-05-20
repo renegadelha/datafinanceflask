@@ -10,7 +10,7 @@
 
 .containerCards, h3 {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
+  justify-content: center;
 }
 
 h3{
@@ -34,7 +34,8 @@ tbody:hover{
 }
 
 table {
-  border-collapse: collapse; /* Combina as bordas das células */
+  border-collapse: collapse;
+  width: 80%;
   margin-left: 6em;
   margin-bottom: 3em;
 }
@@ -45,6 +46,10 @@ td {
   font-family: sans-serif;
 }
 
+.value-action{
+  white-space: nowrap;
+  text-align: right;
+}
 
 .info-action td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.186);

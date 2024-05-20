@@ -1,5 +1,23 @@
 import plotly.graph_objects as go
 import plotly.express as px
+import yfinance as yf
+import pandas_datareader.data as pdr
+
+yf.pdr_override()
+
+
+
+def dados_acao(nome):
+    dados = yf.Ticker(nome + '.sa').history(start='2020-01-01')
+    print(dados.columns)
+
+    fig = px.line(dados, x=dados.index, y='Close')
+    valor_acao = dados['Close'].iloc[-1]
+    
+    return fig.to_html(), valor_acao
+
+    
+
 def gerarBarGrafDividendos(data):
 
     fig = px.bar(data, x='ticker', y='mediana', hover_data=['valorDividendo', 'media'])
