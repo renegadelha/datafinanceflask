@@ -1,11 +1,8 @@
 import plotly.graph_objects as go
 import plotly.express as px
 import yfinance as yf
-import pandas_datareader.data as pdr
-
-yf.pdr_override()
-
-
+import pathlib
+import pandas as pd
 
 def dados_acao(nome):
     dados = yf.Ticker(nome + '.sa').history(start='2020-01-01')
@@ -92,3 +89,21 @@ def gerarGrafCorrInd(graficodados, indicador):
         legendgroup='Cotação'
     ))
     return fig.to_html()
+
+def pegar_maiores_empresas():
+    actual_dir = pathlib.Path().absolute()
+    path = f'{actual_dir}\\data\\statusinvest-busca-avancada.csv'
+    path = path.split('datafinanceflask')[0] + 'datafinanceflask\\data\\statusinvest-busca-avancada.csv'
+    dados = pd.read_csv(path, decimal=",", delimiter=";", thousands=".")
+    lista = dados.sort_values(by=[' VALOR DE MERCADO'], ascending=False)
+    return lista[['TICKER', ' VALOR DE MERCADO', 'PRECO']].head(50)
+
+print(pegar_maiores_empresas())
+
+#def pegar_dados_via_Yfinance(nome):
+    #tick = yf.Ticker(nome + '.SA')
+    #info = tick.info
+    #for key, value in info.items():
+        #print(f"{key}: {value}")
+
+#pegar_dados_via_Yfinance('PETR4')

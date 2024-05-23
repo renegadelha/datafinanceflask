@@ -5,6 +5,7 @@ import atualizar
 import dao
 import carteira as gf
 import psycopg2
+import yfinance as yf
 
 app = Flask(__name__)
 app.secret_key = 'tem_que_definir_chave_secreta'
@@ -133,11 +134,13 @@ def gerariframecard():
 
 @app.route('/exibirdetalhesacao/<nome>', methods=['GET'])
 def exibir_detalhes_acao(nome):
+    tick = yf.Ticker(nome + '.SA')
+    info = tick.info
+    for key, value in info.items():
+        print(f"{key}: {value}")
 
-
-    graf, valor_acao, name_action = gr.dados_acao(nome)
-    
-    return render_template('tableBR.html', plot=graf, nome=nome, valor=valor_acao, full_name=name_action)
+    graf, valor_acao= gr.dados_acao(nome)
+    return render_template('tableBR.html', plot=graf, nome=nome, valor=valor_acao)
 
 @app.route("/gerarminhacarteira") #decorator
 def gerarminhacarteira():
@@ -156,6 +159,10 @@ def gerarrankingdividendos(opcao):
         data = da.readRankingDividendos('minhas')
 
     return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
+
+@app.route('/actions')
+def actions():
+    return render_template('actions.html')
 
 
 
