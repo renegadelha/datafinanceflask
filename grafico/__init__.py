@@ -20,6 +20,11 @@ def gerarBarGrafDividendos(data):
     fig = px.bar(data, x='ticker', y='mediana', hover_data=['valorDividendo', 'media'])
     return fig.to_html()
 
+def gerarBarGrafAcao(data):
+
+    fig = px.bar(data, x='ticker', y='mediana', hover_data=['ticker', 'media'])
+    return fig.to_html()
+
 def gerarGrafRiscRet(df_final):
     fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
                               y=df_final['PercRetorno'],
@@ -98,12 +103,12 @@ def pegar_maiores_empresas():
     lista = dados.sort_values(by=[' VALOR DE MERCADO'], ascending=False)
     return lista[['TICKER', ' VALOR DE MERCADO', 'PRECO']].head(50)
 
-print(pegar_maiores_empresas())
+#print(pegar_maiores_empresas())
 
-#def pegar_dados_via_Yfinance(nome):
-    #tick = yf.Ticker(nome + '.SA')
-    #info = tick.info
-    #for key, value in info.items():
-        #print(f"{key}: {value}")
+def pegar_dados_via_Yfinance(nome):
+    tick = yf.Ticker(nome + '.SA')
+    info = tick.info
+    for key, value in info.items():
+        print(f"{key}: {value}")
 
 #pegar_dados_via_Yfinance('PETR4')

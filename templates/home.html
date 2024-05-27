@@ -17,25 +17,28 @@
 <body>
 	<header class="header" id="header">
 		<nav class="nav container">
-			<a href="/verificarlogin" class="nav-logo">HOME</a>
+			
 
 			<div class="nav-menu" id="nav-menu">
 				<ul class="nav-list">
 					<li class="nav-item dropdown">
-						<a href="#" class="nav-link" onclick="op1()">FIIS</a>
+						<a href="#" class="nav-logo">HOME</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="/actions" class="nav-link">Ações</a>
+						<a href="/rankingacao/all" class="nav-link" target="_blank">Ações</a>
 						<!--<a href="/correlacaoindicadores" class="nav-link">Correlation indicators</a>--><!--criar dropdown(dividentos)-->
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" onclick="op3()">Fundos</a>
+						<a href="#" class="nav-link" target="_blank">Fundos</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" onclick="op4()">Cripto</a>
+						<a href="#" class="nav-link" target="_blank">Cripto</a>
+					</li>
+					<li class="nav-item">
+						<a href="/rankingdividendos/all" class="nav-link" target="_blank">Dividendos</a>
 					</li>
 				</ul>
 
@@ -71,24 +74,26 @@
 
 	<!--==================== LOGIN ====================-->
 	<div class="login" id="login">
-		<form action="" class="login-form">
+		<form action="/verificarlogin" class="login-form" method="post">
 			<h2 class="login-title">Log In</h2>
 
 			<div class="login-group">
 				<div>
-					<label for="email" class="login-label">Email</label>
-					<input type="email" placeholder="Write your email" id="email" class="login-input">
+					<label for="username" class="login-label">Email</label>
+					<input type="email" placeholder="Write your email" id="username" name="username" class="login-input">
 				</div>
 
 				<div>
 					<label for="password" class="login-label">Password</label>
-					<input type="password" placeholder="Enter your password" id="password" class="login-input">
+					<input type="password" placeholder="Enter your password" id="password" name="password" class="login-input" required>
 				</div>
 			</div>
 
 			<div>
 				<p class="login-signup">
 					You do not have an account? <a href="cadastro">Sign up</a>
+					<a href="/">Entrar sem login</a>
+            		<a>{{msg_erro}}</a>
 				</p>
 
 				<a href="#" class="login-forgot">

@@ -32,6 +32,22 @@ def gerarrankingdividendos(dados):
     df = df.drop(columns=['index'])
     return df
 
+def gerarrankingacao(dados):
+    dataf = []
+    for empresa in dados:
+        data = dyanalise(empresa)
+        if 0 != data:
+            dataf.append(data)
+
+    df = pd.DataFrame(np.array(dataf), columns=['ticker', 'valorAcao', 'mediana', 'media'])
+    df = df.astype({"ticker": str, "valorAcao": float, "mediana": float, "media": float})
+    df.drop(df[df['mediana'] < 1].index, inplace=True)
+
+    df = df.sort_values(by=['mediana'], ascending=False)
+    df = df.reset_index()
+    df = df.drop(columns=['index'])
+    return df
+
 def dyanalise(name):
     empresa = name + '.SA'
     comp = yf.Ticker(empresa)
@@ -92,12 +108,16 @@ def readCorrelacoesIndicFile(opcao):
         return pd.read_pickle('data/correlacoesIndAll3D.pkl')
     else:
         return pd.read_pickle('data/correlacoesIndMinhas3D.pkl')
-
+    
 def readRankingDividendos(opcao):
     if opcao == 'all':
         return pd.read_pickle('data/rankingdividendosAll.pkl')
     else:
         return pd.read_pickle('data/rankingdividendosMinhas.pkl')
+    
+def readRankingAcao():
+
+    return pd.read_pickle('data/statusinvest-busca-avancada.csv')
 
 
 def gerarCorrelaAll(opcao):

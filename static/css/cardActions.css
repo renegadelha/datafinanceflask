@@ -3,16 +3,17 @@
   width: 100%;
   max-width: 800px;
   margin: 10px auto;
+  overflow: hidden; /* Esconde o overflow para evitar a barra de rolagem lateral */
 }
 
 .cardActions {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 10px; /* Adicionando espaçamento entre as colunas */
+  flex-wrap: wrap; /* Permite que os elementos se ajustem conforme a largura da tela */
+  gap: 10px;
 }
 
-.action{
+.action {
   padding-right: 150px;
 }
 
@@ -20,6 +21,8 @@
   display: flex;
   flex-direction: column;
   width: 100%; /* Definindo a largura da coluna */
+  flex: 1; /* Faz com que cada coluna use o mesmo espaço disponível */
+  min-width: 300px; /* Ajuste de largura mínima para cada coluna */
 }
 
 h3 {
@@ -30,6 +33,7 @@ h3 {
   font-size: 13px;
   padding: 5px 0;
   text-align: center;
+  margin-bottom: 0; /* Removendo o espaçamento inferior */
 }
 
 table {

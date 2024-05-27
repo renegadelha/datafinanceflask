@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Gráfico de Correlação IPCA Selic </title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/correlacaoindicadores.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/correlacaoindicadores.css') }}">
 
 </head>
 <body>
-    <H1>Correlação Das Ações com os Indicadores Macroeconômicos</H1>
+    <h1>Correlação Das Ações com os Indicadores Macroeconômicos</h1>
     <h2>Descrição</h2>
     <div class="indicators">
         <form action="/correlacaoindicadores" method="post">
@@ -21,7 +21,9 @@
         </form>
     </div>
 
-    {{ plot|safe }}
+    <div class="plot">
+        {{ plot|safe }}
+    </div>
 
 </body>
 </html>

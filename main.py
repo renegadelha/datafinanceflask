@@ -88,6 +88,10 @@ def teste():
 def registro_page():
     return render_template('cadastro.html')
 
+@app.route('/carteira')
+def carteira():
+    return render_template('carteira.html')
+
 @app.route('/calcularRiscoRetorno/<opcao>', methods=['GET','POST'])
 def calcularRiscoRetorno(opcao):
     df_final = da.readRiscoRetornoFile(opcao)
@@ -136,11 +140,9 @@ def gerariframecard():
 def exibir_detalhes_acao(nome):
     tick = yf.Ticker(nome + '.SA')
     info = tick.info
-    for key, value in info.items():
-        print(f"{key}: {value}")
 
     graf, valor_acao= gr.dados_acao(nome)
-    return render_template('tableBR.html', plot=graf, nome=nome, valor=valor_acao)
+    return render_template('dataActions.html', plot=graf, nome=nome, valor=round(valor_acao,2), info=info)
 
 @app.route("/gerarminhacarteira") #decorator
 def gerarminhacarteira():
@@ -154,11 +156,20 @@ def gerarminhacarteira():
 @app.route('/rankingdividendos/<opcao>', methods=['GET','POST'])
 def gerarrankingdividendos(opcao):
     if opcao == 'all':
-        data = da.readRankingDividendos('all').head(40)
+        data = da.readRankingDividendos('all')
     else:
         data = da.readRankingDividendos('minhas')
 
     return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
+
+@app.route('/rankingacao/<opcao>', methods=['GET','POST'])
+def gerarrankingacao(opcao):
+    if opcao == 'all':
+        data = da.readRankingAcao('all').head(40)
+    else:
+        data = da.readRankingAcao('minhas')
+
+    return render_template('rankingacao.html', plot=gr.gerarBarGrafAcao(data))
 
 @app.route('/actions')
 def actions():
