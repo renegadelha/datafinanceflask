@@ -76,9 +76,7 @@ def verificarlogin():
     else:
         return render_template('login.html',msg_erro='usuário ou senha incorreta')
 
-@app.route('/')
-def home():
-    return render_template('home.html')
+
 
 @app.route('/teste')
 def teste():
@@ -96,6 +94,7 @@ def carteira():
 def calcularRiscoRetorno(opcao):
     df_final = da.readRiscoRetornoFile(opcao)
     return render_template('calcRiscoRet.html', plot=gr.gerarGrafRiscRet(df_final))
+
 
 @app.route('/correlacaoindividual', methods=['POST','GET'])
 def correlacaotickerindicador():
@@ -144,6 +143,11 @@ def exibir_detalhes_acao(nome):
     graf, valor_acao= gr.dados_acao(nome)
     return render_template('dataActions.html', plot=graf, nome=nome, valor=round(valor_acao,2), info=info)
 
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
 @app.route("/gerarminhacarteira") #decorator
 def gerarminhacarteira():
     data, grid = gf.gerarPercentuais()
@@ -158,7 +162,7 @@ def gerarrankingdividendos(opcao):
     if opcao == 'all':
         data = da.readRankingDividendos('all')
     else:
-        data = da.readRankingDividendos('minhas')
+        data = da.readRankingDividendos('minhas') 
 
     return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
 

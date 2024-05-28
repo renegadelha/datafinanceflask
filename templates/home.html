@@ -50,7 +50,7 @@
 			<div class="nav-actions">
 
 				<i class="ri-search-line nav-search" id="search-btn"></i>
-				<span class="nav-login" id="login-btn"><a href="/login">ENTER</a></span>
+				<span class="nav-login" id="login-btn">ENTER</span>
 				<!--clica na palavra enter redireciona pra pagina login, clica apenas no background abre o menu de login-->
 
 
@@ -80,7 +80,7 @@
 			<div class="login-group">
 				<div>
 					<label for="username" class="login-label">Email</label>
-					<input type="email" placeholder="Write your email" id="username" name="username" class="login-input">
+					<input type="email" placeholder="Write your email" id="username" name="username" class="login-input" required>
 				</div>
 
 				<div>
@@ -92,13 +92,10 @@
 			<div>
 				<p class="login-signup">
 					You do not have an account? <a href="cadastro">Sign up</a>
-					<a href="/">Entrar sem login</a>
             		<a>{{msg_erro}}</a>
 				</p>
 
-				<a href="#" class="login-forgot">
-					You forgot your password
-				</a>
+				
 
 				<button type="submit" class="login-button">Log In</button>
 			</div>

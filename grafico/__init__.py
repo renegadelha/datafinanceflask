@@ -3,6 +3,7 @@ import plotly.express as px
 import yfinance as yf
 import pathlib
 import pandas as pd
+import dataAnalise as da
 
 def dados_acao(nome):
     dados = yf.Ticker(nome + '.sa').history(start='2020-01-01')
@@ -12,8 +13,6 @@ def dados_acao(nome):
     valor_acao = dados['Close'].iloc[-1]
     
     return fig.to_html(), valor_acao
-
-    
 
 def gerarBarGrafDividendos(data):
 
@@ -100,15 +99,45 @@ def pegar_maiores_empresas():
     path = f'{actual_dir}\\data\\statusinvest-busca-avancada.csv'
     path = path.split('datafinanceflask')[0] + 'datafinanceflask\\data\\statusinvest-busca-avancada.csv'
     dados = pd.read_csv(path, decimal=",", delimiter=";", thousands=".")
+    dados = dados[dados['TICKER'].isin(da.pegar_listadas())]
+    retorno = []
+    #maior valor de mercado
     lista = dados.sort_values(by=[' VALOR DE MERCADO'], ascending=False)
-    return lista[['TICKER', ' VALOR DE MERCADO', 'PRECO']].head(50)
+    retorno.append(lista['TICKER'].head(6).values)
 
-#print(pegar_maiores_empresas())
+    #maior pagadora de dividendos
+    lista = dados.sort_values(by=['DY'], ascending=False)
+    retorno.append( lista['TICKER'].head(6).values)
 
-def pegar_dados_via_Yfinance(nome):
-    tick = yf.Ticker(nome + '.SA')
-    info = tick.info
-    for key, value in info.items():
-        print(f"{key}: {value}")
+    #menor relação preço/lucro
+    lista = dados.sort_values(by=['P/L'], ascending=True)
+    retorno.append( lista['TICKER'].head(6).values)
 
-#pegar_dados_via_Yfinance('PETR4')
+    #maior retorno de capital investido
+    lista = dados.sort_values(by=['ROE'], ascending=False)
+    retorno.append(lista['TICKER'].head(6).values)
+
+    return retorno
+
+def isListed(dados):
+    listed = []
+    for i in dados['TICKER']:
+        if len(yf.Ticker(i + '.sa').history()) > 0:
+            listed.append(i)
+
+    return listed
+
+
+def pegar_cotacao(tickers):
+    tickers = [x + '.sa' for x in tickers]
+    pares  = yf.download(tickers, period='1mo')['Adj Close'].ffill().iloc[-1]
+    return pares.to_dict()
+
+
+for tickers in pegar_maiores_empresas():
+    print(tickers)
+    print(pegar_cotacao(tickers))
+    print('-------')
+
+
+
