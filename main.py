@@ -77,7 +77,6 @@ def verificarlogin():
         return render_template('login.html',msg_erro='usuário ou senha incorreta')
 
 
-
 @app.route('/teste')
 def teste():
     return render_template('hometeste.html')

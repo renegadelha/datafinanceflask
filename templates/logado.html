@@ -19,36 +19,37 @@
 <body>
 	<header class="header" id="header">
 		<nav class="nav container">
-			<a href="/verificarlogin" class="nav-logo">HOME</a>
+
 
 			<div class="nav-menu" id="nav-menu">
 				<ul class="nav-list">
 					<li class="nav-item dropdown">
-						<a href="#" class="nav-link" onclick="op1()">FIIS</a>
+						<a href="#" class="nav-logo">HOME</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="/actions" class="nav-link">Ações</a>
-						<!--<a href="/correlacaoindicadores" class="nav-link">Correlation indicators</a>--><!--criar dropdown(dividentos)-->
+						<a href="/rankingacao/all" class="nav-link" target="_blank">Ações</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" onclick="op3()">Fundos</a>
+						<a href="#" class="nav-link" target="_blank">Fundos</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" onclick="op4()">Dividendos</a>
+						<a href="#" class="nav-link" target="_blank">Ativos</a>
+					</li>
+					<li class="nav-item">
+						<a href="/rankingdividendos/all" class="nav-link" target="_blank">Dividendos</a>
 					</li>
 				</ul>
-
+					
 				<div class="nav-close" id="nav-close">
 					<i class="ri-close-line"></i>
 				</div>
 			</div>
-
+			<!--==========================================================CRIAR BOTAO REDIRECT PRA PAGINA VERIFICAR LOGIN==============-->
 			<div class="nav-actions">
 
-				<i class="ri-search-line nav-search" id="search-btn"></i>
 				<div class="nav-actions">
 
 					<div class="home-content">
@@ -56,7 +57,6 @@
 						<span class="text"></span>
 						<div class="profile">
 							<img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
-							<!--<i class="fa-solid fa-caret-down"></i>-->
 						</div>
 					</div>
 
@@ -91,19 +91,9 @@
 		</nav>
 	</header>
 
-	<!--==================== SEARCH ====================-->
-	<div class="search" id="search">
-		<form action="" class="search-form">
-			<i class="ri-search-line search-icon"></i>
-			<input type="search" placeholder="What are you looking for?" class="search-input">
-		</form>
-
-		<i class="ri-close-line search-close" id="search-close"></i>
-	</div>
-
 	<!--==================== MAIN ====================-->
-	<div class="container-content">
-		<main class="main">
+	<div class="container-datas">
+		<main id="okok" class="main">
 			<iframe id="iframeCarousel" name="carousel" src="{{url_for('gerariframeprincipal')}}"></iframe>
 			<iframe id="iframeCard" name="card" src="{{url_for('gerariframecard')}}"></iframe>
 		</main>
@@ -111,12 +101,7 @@
 
 	<footer>
 		<section class="footer">
-			<!--<div class="social">
-				<a href="#"><i class="fab fa-instagram"></i></a>
-				<a href="#"><i class="fab fa-snapchat"></i></a>
-				<a href="#"><i class="fab fa-twitter"></i></a>
-				<a href="#"><i class="fab fa-facebook-f"></i></a>
-			</div>-->
+
 			<ul class="list">
 				<li>
 					<a href="#">Home</a>

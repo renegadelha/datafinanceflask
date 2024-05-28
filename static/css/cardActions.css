@@ -1,16 +1,18 @@
+
+
 .containerCards {
   cursor: pointer;
   width: 100%;
   max-width: 800px;
   margin: 10px auto;
-  overflow: hidden; /* Esconde o overflow para evitar a barra de rolagem lateral */
+  overflow-x: hidden;
 }
 
 .cardActions {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap; /* Permite que os elementos se ajustem conforme a largura da tela */
-  gap: 10px;
+  flex-wrap: wrap;
+
 }
 
 .action {
@@ -33,13 +35,13 @@ h3 {
   font-size: 13px;
   padding: 5px 0;
   text-align: center;
-  margin-bottom: 0; /* Removendo o espaçamento inferior */
+  margin-bottom: 0;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%; /* Definindo largura fixa para todas as tabelas */
-  margin-bottom: 3em;
+  width: 100%;
+  margin-bottom: 1.1em;
 }
 
 td {
