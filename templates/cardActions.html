@@ -26,30 +26,12 @@
                 </tr>
             </thead>
                 <tbody>
+                {% for nome, cotacao in pares[0] %}
                 <tr class="info-action">
-                  <td class="action"><a href="">HCTR11</a></td>
-                  <td class="value-action" style="color: red;">-0,16 (0,50%)↓</td>
+                  <td class="action"><a href="/exibirdetalhesacao/{{nome}}">{{nome}}</a></td>
+                  <td class="value-action" style="color: rgb(64, 0, 255);">R$ {{cotacao}}</td>
                 </tr>
-                <tr class="info-action">
-                  <td class="action"><a href="">DEVA11</a></td>
-                  <td class="value-action" style="color: red;">-0,25 (0,53%)↓</td>
-                </tr>
-                <tr class="info-action">
-                  <td class="action"><a href="">ARCT11</a></td>
-                  <td class="value-action" style="color: green;">+0,88</td>
-                </tr>
-                <tr class="info-action">
-                  <td class="action"><a href="">SARE11</a></td>
-                  <td class="value-action" style="color: green;">+0,30</td>
-                </tr>
-                <tr class="info-action">
-                  <td class="action"><a href="">BBPO11</a></td>
-                  <td class="value-action" style="color: green;">+0,37</td>
-                </tr>
-                <tr class="info-action">
-                  <td class="action"><a href="">XPCI11</a></td>
-                  <td class="value-action" style="color: green;">+0,63</td>
-                </tr>
+                {% endfor %}
                
               </tbody>
           </table>
@@ -67,12 +49,12 @@
                       </th>
                     </thead>
                   <tbody>
-                  {% for nome, valor in pares %}
-                  <tr class="info-action">
-                    <td class="action"><a href="/exibirdetalhesacao/{{nome}}" target="_blank">{{nome}}</a></td>
-                    <td class="value-action">{{valor}}</td><!--SUBSTITUIR PELO NOME COMPLETO DA ACAO E TROCAR PELAS ACOES POPULARES-->
-                  </tr>
-                  {% endfor %}
+                     {% for nome, cotacao in pares[1] %}
+                    <tr class="info-action">
+                      <td class="action"><a href="/exibirdetalhesacao/{{nome}}">{{nome}}</a></td>
+                      <td class="value-action" style="color: rgb(64, 0, 255);">R$ {{cotacao}}</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 
@@ -92,30 +74,12 @@
                     </th>
                   </thead>
                 <tbody>
-                  <tr class="info-action">
-                    <td class="action"><a href="">HCTR11</a></td>
-                    <td class="value-action" style="color: red;">-0,16 (0,50%)↓</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">DEVA11</a></td>
-                    <td class="value-action" style="color: red;">-0,25 (0,53%)↓</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">ARCT11</a></td>
-                    <td class="value-action" style="color: green;">+0,88</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">SARE11</a></td>
-                    <td class="value-action" style="color: green;">+0,30</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">BBPO11</a></td>
-                    <td class="value-action" style="color: green;">+0,37</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">XPCI11</a></td>
-                    <td class="value-action" style="color: green;">+0,63</td>
-                  </tr>
+                  {% for nome, cotacao in pares[2] %}
+                    <tr class="info-action">
+                      <td class="action"><a href="/exibirdetalhesacao/{{nome}}">{{nome}}</a></td>
+                      <td class="value-action" style="color: rgb(64, 0, 255);">R$ {{cotacao}}</td>
+                    </tr>
+                    {% endfor %}
               </tbody>
           </table>
           <!--########## - FIIS - ##########-->
@@ -129,36 +93,17 @@
                     </th>
                   </thead>
                 <tbody>
-                  <tr class="info-action">
-                    <td class="action"><a href="">HCTR11</a></td>
-                    <td class="value-action" style="color: red;">-0,16 (0,50%)↓</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">DEVA11</a></td>
-                    <td class="value-action" style="color: red;">-0,25 (0,53%)↓</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">ARCT11</a></td>
-                    <td class="value-action" style="color: green;">+0,88</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">SARE11</a></td>
-                    <td class="value-action" style="color: green;">+0,30</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">BBPO11</a></td>
-                    <td class="value-action" style="color: green;">+0,37</td>
-                  </tr>
-                  <tr class="info-action">
-                    <td class="action"><a href="">XPCI11</a></td>
-                    <td class="value-action" style="color: green;">+0,63</td>
-                  </tr>
+                  {% for nome, cotacao in pares[3] %}
+                    <tr class="info-action">
+                      <td class="action"><a href="/exibirdetalhesacao/{{nome}}">{{nome}}</a></td>
+                      <td class="value-action" style="color: rgb(64, 0, 255);">R$ {{cotacao}}</td>
+                    </tr>
+                    {% endfor %}
               </tbody>
           </table>
         </div>
     </div>
     </div>
-
 
 </body>
 </html>

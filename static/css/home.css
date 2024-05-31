@@ -446,6 +446,8 @@ a:visited {
 
 /*FOOTER*/
 
+
+
 footer{
   font-family: 'Segoe UI';
   font-weight: 400;
@@ -515,6 +517,18 @@ footer{
   color: #ffffff;
 }
 
+.return{
+  display: flex;
+  align-items: center;
+  font-size: 24px; /* Ajuste o tamanho conforme necessário */
+  text-decoration: none; /* Remova o sublinhado */
+  color: inherit; /* Use a cor atual do texto */
+}
+
+.nav-icon {
+  margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+  font-size: 24px; /* Ajuste o tamanho conforme necessário */
+}
 
 
 

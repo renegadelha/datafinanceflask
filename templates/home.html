@@ -17,17 +17,15 @@
 <body>
 	<header class="header" id="header">
 		<nav class="nav container">
-			
-
 			<div class="nav-menu" id="nav-menu">
 				<ul class="nav-list">
+					
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-logo">HOME</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="/rankingacao/all" class="nav-link" target="_blank">Ações</a>
-						<!--<a href="/correlacaoindicadores" class="nav-link">Correlation indicators</a>--><!--criar dropdown(dividentos)-->
+						<a href="/rankingacoes/all" class="nav-link" target="_blank">Ações</a>
 					</li>
 
 					<li class="nav-item">
@@ -51,6 +49,7 @@
 
 				<i class="ri-search-line nav-search" id="search-btn" style="color: transparent;"></i>
 				<span class="nav-login" id="login-btn">ENTER</span>
+				
 				<!--clica na palavra enter redireciona pra pagina login, clica apenas no background abre o menu de login-->
 
 
@@ -109,12 +108,6 @@
 
 	<footer>
 		<section class="footer">
-			<!--<div class="social">
-				<a href="#"><i class="fab fa-instagram"></i></a>
-				<a href="#"><i class="fab fa-snapchat"></i></a>
-				<a href="#"><i class="fab fa-twitter"></i></a>
-				<a href="#"><i class="fab fa-facebook-f"></i></a>
-			</div>-->
 			<ul class="list">
 				<li>
 					<a href="#">Home</a>
@@ -140,25 +133,6 @@
 
 
 	<script src="../static/js/home.js"></script>
-
-	<script>
-		function op1() {
-			document.getElementById('iframeTarget').src = "{{url_for('atualizarcorrelacaoallindicadores')}}";
-		}
-		function op2() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
-		}
-		function op3() {
-			document.getElementById('iframeTarget').src = "{{url_for('correlacaotickerindicador')}}";
-		}
-		function op4() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
-		}
-		function op5() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
-		}
-	</script>
-
 
 </body>
 

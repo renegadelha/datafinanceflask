@@ -1,7 +1,7 @@
+import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 import yfinance as yf
-import pathlib
 import pandas as pd
 import dataAnalise as da
 
@@ -19,10 +19,28 @@ def gerarBarGrafDividendos(data):
     fig = px.bar(data, x='ticker', y='mediana', hover_data=['valorDividendo', 'media'])
     return fig.to_html()
 
-def gerarBarGrafAcao(data):
-
-    fig = px.bar(data, x='ticker', y='mediana', hover_data=['ticker', 'media'])
+def gerarBarGrafValores(data):
+    fig = px.bar(data, x='ticker', y='preco', hover_data=['preco'])
     return fig.to_html()
+
+def gerarrankingvalores(dados):
+    dataf = []
+    for empresa in dados:
+        data = da.dyanalise(empresa)
+        if data:
+            dataf.append(data)
+
+    df = pd.DataFrame(np.array(dataf), columns=['ticker', 'preco'])
+    df = df.astype({"ticker": str, "preco": int})
+    df = df.sort_values(by=['preco'], ascending=False).head(20)
+    return df
+
+def lerDadosCSV(caminho_arquivo):
+    # Lê o arquivo CSV em um DataFrame
+    df = pd.read_csv(caminho_arquivo, delimiter=';')
+    # Ordena pelos maiores valores e pega os 20 primeiros
+    df = df.sort_values(by='preco', ascending=False).head(20)
+    return df
 
 def gerarGrafRiscRet(df_final):
     fig = go.Figure(data=go.Scatter(x=df_final['ProbGanho'],
@@ -93,51 +111,3 @@ def gerarGrafCorrInd(graficodados, indicador):
         legendgroup='Cotação'
     ))
     return fig.to_html()
-
-def pegar_maiores_empresas():
-    actual_dir = pathlib.Path().absolute()
-    path = f'{actual_dir}\\data\\statusinvest-busca-avancada.csv'
-    path = path.split('datafinanceflask')[0] + 'datafinanceflask\\data\\statusinvest-busca-avancada.csv'
-    dados = pd.read_csv(path, decimal=",", delimiter=";", thousands=".")
-    dados = dados[dados['TICKER'].isin(da.pegar_listadas())]
-    retorno = []
-    #maior valor de mercado
-    lista = dados.sort_values(by=[' VALOR DE MERCADO'], ascending=False)
-    retorno.append(lista['TICKER'].head(6).values)
-
-    #maior pagadora de dividendos
-    lista = dados.sort_values(by=['DY'], ascending=False)
-    retorno.append( lista['TICKER'].head(6).values)
-
-    #menor relação preço/lucro
-    lista = dados.sort_values(by=['P/L'], ascending=True)
-    retorno.append( lista['TICKER'].head(6).values)
-
-    #maior retorno de capital investido
-    lista = dados.sort_values(by=['ROE'], ascending=False)
-    retorno.append(lista['TICKER'].head(6).values)
-
-    return retorno
-
-def isListed(dados):
-    listed = []
-    for i in dados['TICKER']:
-        if len(yf.Ticker(i + '.sa').history()) > 0:
-            listed.append(i)
-
-    return listed
-
-
-def pegar_cotacao(tickers):
-    tickers = [x + '.sa' for x in tickers]
-    pares  = yf.download(tickers, period='1mo')['Adj Close'].ffill().iloc[-1]
-    return pares.to_dict()
-
-
-for tickers in pegar_maiores_empresas():
-    print(tickers)
-    print(pegar_cotacao(tickers))
-    print('-------')
-
-
-

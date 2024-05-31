@@ -139,7 +139,7 @@ img {
 }
 
 .nav-item {
-  margin-top: -20px;
+  margin: -20px 10px;
 }
 
 .nav-logo {
@@ -184,6 +184,14 @@ a:visited {
   color: inherit;
 }
 
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
 /* mobile */
 @media screen and (max-width: 1023px) {
   .nav-menu {
@@ -203,7 +211,12 @@ a:visited {
   flex-direction: column;
   row-gap: 2.5rem;
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
+
+
+
 
 .nav-link {
   color: hsl(230, 75%, 15%);
@@ -464,4 +477,15 @@ cursor: pointer;
 .picture__img {
   max-width: 100%;
 }
+
+/*=================================================================================*/
+
+
+
+
+.nav-link, .nav-logo {
+  padding: 10px;
+}
+
+
 

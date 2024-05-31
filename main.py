@@ -1,47 +1,33 @@
+import pathlib
 from flask import *
 import dataAnalise as da
 import grafico as gr
 import atualizar
-import dao
+import dao 
 import carteira as gf
-import psycopg2
 import yfinance as yf
+
 
 app = Flask(__name__)
 app.secret_key = 'tem_que_definir_chave_secreta'
 
-def connect_to_db():
-    try:
-        conn = psycopg2.connect(
-            database="datafinanceflask",
-            host="localhost",
-            user="postgres",
-            password="123",
-            port="5432"
-        )
-        return conn
-    except Exception as e:
-        print("Erro ao conectar ao banco de dados:", e)
-        return None
-
-@app.route('/lista')
-def listar():
-    pessoas = ['rene','maria','lala']
-    return render_template('teste.html', lista=pessoas)
-
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/logout')
-def logout():
-    session.pop('user', default=None)
-    return redirect('/login')
+@app.route('/retornar')
+def retornar():
+    return redirect('/verificarlogin')
 
 
 @app.route('/register', methods=['POST','GET'])
 def registrar_user():
+        
+        dao.conectardb()
 
         if request.method == 'GET':
             return render_template('cadastro.html')
@@ -62,6 +48,8 @@ def registrar_user():
 @app.route('/verificarlogin', methods=['POST','GET'])
 def verificarlogin():
 
+    dao.conectardb()
+
     user = request.form.get('username')
     senha = request.form.get('password')
 
@@ -75,8 +63,7 @@ def verificarlogin():
         return render_template('logado.html', name=nome, state=estado, profession=profissao)
     else:
         return render_template('login.html',msg_erro='usuário ou senha incorreta')
-
-
+    
 @app.route('/teste')
 def teste():
     return render_template('hometeste.html')
@@ -130,7 +117,7 @@ def gerariframeprincipal():
 
 @app.route('/gerariframecard')
 def gerariframecard():
-    pares = da.pegarcotacoes()
+    pares = da.gerar_listas_acoes_cotacoes()
 
     return render_template('cardActions.html', pares=pares)
 
@@ -141,11 +128,6 @@ def exibir_detalhes_acao(nome):
 
     graf, valor_acao= gr.dados_acao(nome)
     return render_template('dataActions.html', plot=graf, nome=nome, valor=round(valor_acao,2), info=info)
-
-
-@app.route('/')
-def home():
-    return render_template('home.html')
 
 @app.route("/gerarminhacarteira") #decorator
 def gerarminhacarteira():
@@ -165,14 +147,20 @@ def gerarrankingdividendos(opcao):
 
     return render_template('rankingdividendos.html', plot=gr.gerarBarGrafDividendos(data))
 
-@app.route('/rankingacao/<opcao>', methods=['GET','POST'])
-def gerarrankingacao(opcao):
+@app.route('/rankingacoes/<opcao>', methods=['GET', 'POST'])
+def gerarrankingvalores(opcao):
     if opcao == 'all':
-        data = da.readRankingAcao('all').head(40)
+        caminho_arquivo = pathlib.Path("E:\#ESTUDOS\datafinanceflask\data\statusinvest-busca-avancada.csv")
     else:
-        data = da.readRankingAcao('minhas')
-
-    return render_template('rankingacao.html', plot=gr.gerarBarGrafAcao(data))
+        caminho_arquivo = pathlib.Path("E:\#ESTUDOS\datafinanceflask\data\statusinvest-busca-avancada.csv")
+    
+    # Lê os dados do CSV
+    data = gr.lerDadosCSV(caminho_arquivo)
+    
+    # Gera o gráfico em HTML
+    plot_html = gr.gerarBarGrafValores(data)
+    
+    return render_template('rankingvalores.html', plot=plot_html)
 
 @app.route('/actions')
 def actions():

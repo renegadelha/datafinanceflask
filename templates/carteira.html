@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Sign up / Login Form</title>
+  <title>Minha Carteira</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/carteira.css') }}">
@@ -17,22 +17,22 @@
 			<div class="nav-menu" id="nav-menu">
 				<ul class="nav-list">
 					<li class="nav-item dropdown">
-						<a href="#" class="nav-logo">HOME</a>
+						<a href="/" class="nav-logo">HOME</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="/rankingacao/all" class="nav-link" target="_blank">Ações</a>
+						<a href="#" class="nav-link" onclick="op1()">Risco Retorno</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" target="_blank">Fundos</a>
+						<a href="#" class="nav-link" onclick="op2()">Correlacao Individual</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link" target="_blank">Ativos</a>
+						<a href="#" class="nav-link" onclick="op3()">Indicadores</a>
 					</li>
 					<li class="nav-item">
-						<a href="/rankingdividendos/all" class="nav-link" target="_blank">Dividendos</a>
+						<a href="#" class="nav-link" onclick="op4()">Dividendos</a>
 					</li>
 				</ul>
 
@@ -51,6 +51,7 @@
 						<div class="profile">
 							<img class="photo-profile" src="../static/Imagens/perfil.jpg" alt="perfil">
 						</div>
+						
 					</div>
 
 					<div id="submenu" class="submenu">
@@ -93,7 +94,7 @@
 
 		<i class="ri-close-line search-close" id="search-close"></i>
 	 </div>
-
+	
 	 
 
 	 <!--==================== MAIN ====================-->
@@ -105,20 +106,18 @@
 	 <script src="../static/js/carteira.js"></script>
 	 <script>
 		function op1() {
-			document.getElementById('iframeTarget').src = "{{url_for('atualizarcorrelacaoallindicadores')}}";
+			document.getElementById('iframeTarget').src = "{{url_for('calcularRiscoRetorno', opcao='all')}}";
 		}
 		function op2() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
-		}
-		function op3() {
 			document.getElementById('iframeTarget').src = "{{url_for('correlacaotickerindicador')}}";
 		}
+		function op3() {
+			document.getElementById('iframeTarget').src = "{{url_for('atualizarcorrelacaoallindicadores')}}";
+		}
 		function op4() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
+			document.getElementById('iframeTarget').src = "{{url_for('gerarrankingdividendos', opcao='all')}}";
 		}
-		function op5() {
-			document.getElementById('iframeTarget').src = "{{url_for('gerarminhacarteira')}}";
-		}
+		
 	 </script>
 </body>
 </html>
