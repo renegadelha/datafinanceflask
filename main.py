@@ -129,7 +129,7 @@ def exibir_detalhes_acao(nome):
     graf, valor_acao= gr.dados_acao(nome)
     return render_template('dataActions.html', plot=graf, nome=nome, valor=round(valor_acao,2), info=info)
 
-@app.route("/gerarminhacarteira") #decorator
+@app.route("/gerarminhacarteira")
 def gerarminhacarteira():
     data, grid = gf.gerarPercentuais()
     lista = [['ticker', 'percentual']]
@@ -153,11 +153,9 @@ def gerarrankingvalores(opcao):
         caminho_arquivo = pathlib.Path("E:\#ESTUDOS\datafinanceflask\data\statusinvest-busca-avancada.csv")
     else:
         caminho_arquivo = pathlib.Path("E:\#ESTUDOS\datafinanceflask\data\statusinvest-busca-avancada.csv")
-    
-    # Lê os dados do CSV
+
     data = gr.lerDadosCSV(caminho_arquivo)
-    
-    # Gera o gráfico em HTML
+ 
     plot_html = gr.gerarBarGrafValores(data)
     
     return render_template('rankingvalores.html', plot=plot_html)

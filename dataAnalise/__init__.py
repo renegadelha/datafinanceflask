@@ -37,12 +37,12 @@ def gerarrankingvalores(dados):
     dataf = []
     for empresa in dados:
         data = dyanalise(empresa)
-        if data:  # Verifique se data não é 0 ou vazio
+        if data:
             dataf.append(data)
 
     df = pd.DataFrame(np.array(dataf), columns=['ticker', 'valor'])
     df = df.astype({"ticker": str, "valor": float})
-    df = df.sort_values(by=['valor'], ascending=False).head(20)  # Pegar os 20 maiores valores
+    df = df.sort_values(by=['valor'], ascending=False).head(20)
     return df
 
 def dyanalise(name):
@@ -78,7 +78,7 @@ def gerarcorrelacaoindividual(ticker, indicador):
     cotaMensal.index = pd.to_datetime(cotaMensal.index.date)
 
     ind_stock = pd.concat([ind_df, cotaMensal], axis=1, ignore_index=True)
-    #normalizaçao dos dados
+
     df_norm = (ind_stock - ind_stock.min()) / (ind_stock.max() - ind_stock.min())
     df_norm.columns = ['indicador', 'stock']
 
