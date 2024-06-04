@@ -21,7 +21,11 @@ def login():
 
 @app.route('/retornar')
 def retornar():
-    return redirect('/verificarlogin')
+    if 'user' in session:
+        user = session['user']
+        return render_template('logado.html', name=nome, state=estado, profession=profissao)
+    else:
+        return redirect(url_for('verificarlogin'))
 
 
 @app.route('/register', methods=['POST','GET'])
@@ -158,7 +162,7 @@ def gerarrankingvalores(opcao):
  
     plot_html = gr.gerarBarGrafValores(data)
     
-    return render_template('rankingvalores.html', plot=plot_html)
+    return render_template('rankingacao.html', plot=plot_html)
 
 @app.route('/actions')
 def actions():

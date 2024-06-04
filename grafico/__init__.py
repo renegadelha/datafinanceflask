@@ -20,7 +20,12 @@ def gerarBarGrafDividendos(data):
     return fig.to_html()
 
 def gerarBarGrafValores(data):
-    fig = px.bar(data, x='ticker', y='preco', hover_data=['preco'])
+    fig = px.bar(data, x='TICKER', y='PRECO', hover_data=['PRECO'])
+    fig.update_layout(
+    xaxis=dict(
+        tickangle=-90
+    )
+    )
     return fig.to_html()
 
 def gerarrankingvalores(dados):
@@ -31,15 +36,15 @@ def gerarrankingvalores(dados):
             dataf.append(data)
 
     df = pd.DataFrame(np.array(dataf), columns=['ticker', 'preco'])
-    df = df.astype({"ticker": str, "preco": int})
-    df = df.sort_values(by=['preco'], ascending=False).head(20)
+    df = df.sort_values(by=['preco'], ascending=False).head(50)
     return df
 
+
 def lerDadosCSV(caminho_arquivo):
-    # Lê o arquivo CSV em um DataFrame
+
     df = pd.read_csv(caminho_arquivo, delimiter=';')
-    # Ordena pelos maiores valores e pega os 20 primeiros
-    df = df.sort_values(by='preco', ascending=False).head(20)
+
+    df = df.sort_values(by=df.columns[0], ascending=False).head(50)
     return df
 
 def gerarGrafRiscRet(df_final):
@@ -92,9 +97,9 @@ def gerarGrafCorrInd(graficodados, indicador):
     fig.add_trace(go.Scatter(
         name=indicador,
         x=graficodados.index,
-        y=graficodados['indicador'],  # Dados para o eixo y,
-        mode='lines',  # Tipo de gráfico: linhas,
-        line=dict(color='blue')  # Altera a cor das linhas
+        y=graficodados['indicador'],
+        mode='lines',
+        line=dict(color='blue')
 
     ))
     fig.update_layout(
@@ -105,9 +110,9 @@ def gerarGrafCorrInd(graficodados, indicador):
     fig.add_trace(go.Scatter(
         name='Cotação',
         x=graficodados.index,
-        y=graficodados['stock'],  # Dados para o eixo y,
-        mode='lines',  # Tipo de gráfico: linhas,
-        line=dict(color='red'),  # Altera a cor das linhas
+        y=graficodados['stock'],
+        mode='lines',
+        line=dict(color='red'),
         legendgroup='Cotação'
     ))
     return fig.to_html()

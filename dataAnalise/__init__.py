@@ -33,18 +33,6 @@ def gerarrankingdividendos(dados):
     df = df.drop(columns=['index'])
     return df
 
-def gerarrankingvalores(dados):
-    dataf = []
-    for empresa in dados:
-        data = dyanalise(empresa)
-        if data:
-            dataf.append(data)
-
-    df = pd.DataFrame(np.array(dataf), columns=['ticker', 'valor'])
-    df = df.astype({"ticker": str, "valor": float})
-    df = df.sort_values(by=['valor'], ascending=False).head(20)
-    return df
-
 def dyanalise(name):
     empresa = name + '.SA'
     comp = yf.Ticker(empresa)
